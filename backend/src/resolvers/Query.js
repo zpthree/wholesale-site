@@ -1,22 +1,22 @@
 const Query = {
-  async product(parent, { id }, { db }, info) {
-    const product = await db.query.product({ where: { id } }, info);
+  async item(parent, { id }, { db }, info) {
+    const item = await db.query.item({ where: { id } }, info);
 
-    if (!product) {
-      throw new Error('Product not found.');
+    if (!item) {
+      throw new Error('item not found.');
     }
 
-    return product;
+    return item;
   },
-  products(parent, { query }, { db }, info) {
+  items(parent, { query }, { db }, info) {
     if (!query) {
-      return db.query.products({}, info);
+      return db.query.items({}, info);
     }
 
-    return db.query.products({ where: { title_contains: query } }, info);
+    return db.query.items({ where: { title_contains: query } }, info);
   },
   department(parent, { department }, { db }, info) {
-    return db.query.products({ where: { department } }, info);
+    return db.query.items({ where: { department } }, info);
   },
   async user(parent, { id }, { db }, info) {
     const user = await db.query.user({ where: { id } });

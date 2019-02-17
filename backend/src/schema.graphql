@@ -1,17 +1,17 @@
 # import * from './generated/prisma.graphql'
 
 type Query {
-  product(id: ID!): Product!
-  products(query: String): [Product!]!
-  department(department: String): [Product!]!
+  item(id: ID!): Item!
+  items(query: String): [Item!]!
+  department(department: String): [Item!]!
   user(id: ID!): User!
   users(query: String): [User!]!
 }
 
 type Mutation {
-  createProduct(data: ProductCreateInput!): Product!
-  deleteProduct(id: ID!): Product!
-  updateProduct(id: ID!, data: ProductUpdateInput!): Product!
+  createItem(data: ItemCreateInput!): Item!
+  deleteItem(id: ID!): Item!
+  updateItem(id: ID!, data: ItemUpdateInput!): Item!
   createUser(data: UserCreateInput!): User!
   deleteUser(id: ID!): User!
   updateUser(id: ID!, data: UserUpdateInput!): User!

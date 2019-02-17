@@ -4,22 +4,22 @@ import NavStyles from './styles/NavStyles';
 
 const Nav = () => (
   <NavStyles>
-    <Link href="/products">
+    <Link href="/items">
       <a>All</a>
     </Link>
-    <Link href="/products?dept=dry-groceries">
+    <Link href="/items?dept=dry-groceries">
       <a>Dry Groceries</a>
     </Link>
-    <Link href="/products?dept=non-food">
+    <Link href="/items?dept=non-food">
       <a>Non-Food</a>
     </Link>
-    <Link href="/products?dept=refrigerated">
+    <Link href="/items?dept=refrigerated">
       <a>Refrigerated</a>
     </Link>
-    <Link href="/products?dept=frozen">
+    <Link href="/items?dept=frozen">
       <a>Frozen</a>
     </Link>
-    <Link href="/products?dept=produce">
+    <Link href="/items?dept=produce">
       <a>Produce</a>
     </Link>
   </NavStyles>

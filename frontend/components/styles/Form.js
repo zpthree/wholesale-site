@@ -253,7 +253,6 @@ const Form = styled.form`
         border-radius: 2px 2px 0 0;
         border: 1px solid #eee;
         border-bottom: 2px solid ${props => props.theme.red};
-        padding: 6.5px 4px 7.5px;
 
         & ~ label p {
           color: ${props => props.theme.red};
@@ -291,7 +290,6 @@ const Form = styled.form`
     &:focus {
       border-radius: 2px 2px 0 0;
       border: 2px solid ${props => props.theme.red} !important;
-      padding: 6.5px 4px 7.5px;
     }
   }
 

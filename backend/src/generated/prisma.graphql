@@ -1,7 +1,7 @@
 # source: https://us1.prisma.sh/zach-patrick-58210e/wholesale-site/dev
-# timestamp: Tue Feb 05 2019 14:03:27 GMT-0500 (Eastern Standard Time)
+# timestamp: Thu Feb 14 2019 16:45:25 GMT-0500 (Eastern Standard Time)
 
-type AggregateProduct {
+type AggregateItem {
   count: Int!
 }
 
@@ -16,55 +16,7 @@ type BatchPayload {
 
 scalar DateTime
 
-"""
-The `Long` scalar type represents non-fractional signed whole numeric values.
-Long can represent values between -(2^63) and 2^63 - 1.
-"""
-scalar Long
-
-type Mutation {
-  createUser(data: UserCreateInput!): User!
-  createProduct(data: ProductCreateInput!): Product!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateProduct(data: ProductUpdateInput!, where: ProductWhereUniqueInput!): Product
-  deleteUser(where: UserWhereUniqueInput!): User
-  deleteProduct(where: ProductWhereUniqueInput!): Product
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertProduct(where: ProductWhereUniqueInput!, create: ProductCreateInput!, update: ProductUpdateInput!): Product!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  updateManyProducts(data: ProductUpdateManyMutationInput!, where: ProductWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyProducts(where: ProductWhereInput): BatchPayload!
-}
-
-enum MutationType {
-  CREATED
-  UPDATED
-  DELETED
-}
-
-"""An object with an ID"""
-interface Node {
-  """The id of the object."""
-  id: ID!
-}
-
-"""Information about pagination in a connection."""
-type PageInfo {
-  """When paginating forwards, are there more items?"""
-  hasNextPage: Boolean!
-
-  """When paginating backwards, are there more items?"""
-  hasPreviousPage: Boolean!
-
-  """When paginating backwards, the cursor to continue."""
-  startCursor: String
-
-  """When paginating forwards, the cursor to continue."""
-  endCursor: String
-}
-
-type Product implements Node {
+type Item implements Node {
   id: ID!
   department: String!
   barcode: String
@@ -91,16 +43,16 @@ type Product implements Node {
 }
 
 """A connection to a list of items."""
-type ProductConnection {
+type ItemConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [ProductEdge]!
-  aggregate: AggregateProduct!
+  edges: [ItemEdge]!
+  aggregate: AggregateItem!
 }
 
-input ProductCreateInput {
+input ItemCreateInput {
   department: String!
   barcode: String
   brand: String
@@ -124,15 +76,15 @@ input ProductCreateInput {
 }
 
 """An edge in a connection."""
-type ProductEdge {
+type ItemEdge {
   """The item at the end of the edge."""
-  node: Product!
+  node: Item!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum ProductOrderByInput {
+enum ItemOrderByInput {
   id_ASC
   id_DESC
   department_ASC
@@ -181,7 +133,7 @@ enum ProductOrderByInput {
   status_DESC
 }
 
-type ProductPreviousValues {
+type ItemPreviousValues {
   id: ID!
   department: String!
   barcode: String
@@ -207,22 +159,22 @@ type ProductPreviousValues {
   status: String!
 }
 
-type ProductSubscriptionPayload {
+type ItemSubscriptionPayload {
   mutation: MutationType!
-  node: Product
+  node: Item
   updatedFields: [String!]
-  previousValues: ProductPreviousValues
+  previousValues: ItemPreviousValues
 }
 
-input ProductSubscriptionWhereInput {
+input ItemSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [ProductSubscriptionWhereInput!]
+  AND: [ItemSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [ProductSubscriptionWhereInput!]
+  OR: [ItemSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [ProductSubscriptionWhereInput!]
+  NOT: [ItemSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -243,10 +195,10 @@ input ProductSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: ProductWhereInput
+  node: ItemWhereInput
 }
 
-input ProductUpdateInput {
+input ItemUpdateInput {
   department: String
   barcode: String
   brand: String
@@ -269,7 +221,7 @@ input ProductUpdateInput {
   status: String
 }
 
-input ProductUpdateManyMutationInput {
+input ItemUpdateManyMutationInput {
   department: String
   barcode: String
   brand: String
@@ -292,15 +244,15 @@ input ProductUpdateManyMutationInput {
   status: String
 }
 
-input ProductWhereInput {
+input ItemWhereInput {
   """Logical AND on all given filters."""
-  AND: [ProductWhereInput!]
+  AND: [ItemWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [ProductWhereInput!]
+  OR: [ItemWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [ProductWhereInput!]
+  NOT: [ItemWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -1025,17 +977,65 @@ input ProductWhereInput {
   status_not_ends_with: String
 }
 
-input ProductWhereUniqueInput {
+input ItemWhereUniqueInput {
   id: ID
+}
+
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
+scalar Long
+
+type Mutation {
+  createUser(data: UserCreateInput!): User!
+  createItem(data: ItemCreateInput!): Item!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateItem(data: ItemUpdateInput!, where: ItemWhereUniqueInput!): Item
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteItem(where: ItemWhereUniqueInput!): Item
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertItem(where: ItemWhereUniqueInput!, create: ItemCreateInput!, update: ItemUpdateInput!): Item!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyItems(data: ItemUpdateManyMutationInput!, where: ItemWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyItems(where: ItemWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
 }
 
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  products(where: ProductWhereInput, orderBy: ProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Product]!
+  items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item]!
   user(where: UserWhereUniqueInput!): User
-  product(where: ProductWhereUniqueInput!): Product
+  item(where: ItemWhereUniqueInput!): Item
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  productsConnection(where: ProductWhereInput, orderBy: ProductOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProductConnection!
+  itemsConnection(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ItemConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1046,7 +1046,7 @@ type Query {
 
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  product(where: ProductSubscriptionWhereInput): ProductSubscriptionPayload
+  item(where: ItemSubscriptionWhereInput): ItemSubscriptionPayload
 }
 
 type User implements Node {

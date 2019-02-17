@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
 import styled from 'styled-components';
 import Form from './styles/Form';
 import Btn from './styles/Btn';
+import { CREATE_ITEM_MUTATION } from './CreateItem';
 
 const CreateUserStyles = styled.div`
   h4 {
@@ -25,9 +28,52 @@ const CreateUserStyles = styled.div`
   }
 `;
 
+const CREATE_USER_MUTATION = gql`
+  mutation CREATE_USER_MUTATION(
+    $firstName: String!
+    $lastName: String
+    $company: String
+    $email: String
+    $address: String
+    $phone: String
+    $username: String!
+    $password: String!
+    $permissions: String!
+    $canOrder: Boolean!
+  ) {
+    createUser(
+      data: {
+        firstName: $firstName
+        lastName: $lastName
+        company: $company
+        email: $email
+        address: $address
+        phone: $phone
+        username: $username
+        password: $password
+        permissions: $permissions
+        canOrder: $canOrder
+        active: true
+      }
+    ) {
+      id
+    }
+  }
+`;
+
 class CreateUser extends Component {
   state = {
-    ...this.props.initialState,
+    firstName: '',
+    lastName: '',
+    username: '',
+    company: '',
+    email: '',
+    permissions: '',
+    canOrder: false, // needs to be false by default
+    phone: '',
+    address: '',
+    password: '',
+    confirmPassword: '',
   };
 
   handleChange = e => {
@@ -41,275 +87,284 @@ class CreateUser extends Component {
     this.setState({ [name]: !this.state.canOrder });
   };
 
-  handleCancel = e => {
-    e.preventDefault();
-
+  resetState = e => {
     const { action } = this.props;
 
-    if (action === 'create') {
-      this.setState({
-        firstName: '',
-        lastName: '',
-        username: '',
-        company: '',
-        email: '',
-        permissions: '',
-        canOrder: '',
-        phone: '',
-        address: '',
-        password: '',
-        confirmPassword: '',
-      });
-    }
-
-    if (action === 'update') {
-      console.log('reset user data');
-    }
+    this.setState({
+      firstName: '',
+      lastName: '',
+      username: '',
+      company: '',
+      email: '',
+      permissions: '',
+      canOrder: false, // needs to be false by default
+      phone: '',
+      address: '',
+      password: '',
+      confirmPassword: '',
+    });
 
     window.scrollTo(0, 0);
   };
 
   render() {
     return (
-      <CreateUserStyles>
-        <h4>{this.props.title}</h4>
-        <Form id="new_user_info" method="post">
-          <div className="form-body">
-            <div className="form-section">
-              <h5>User Information</h5>
-              <div className="form-row info">
-                <div className="row-half">
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    value={this.state.firstName}
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <label htmlFor="firstName">
-                    <p>First Name</p>
-                  </label>
-                </div>
-                <div className="row-half">
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    value={this.state.lastName}
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="lastName">
-                    <p>
-                      Last Name <strong>&nbsp;(Optional)</strong>
-                    </p>
-                  </label>
-                </div>
-              </div>
-
-              <div className="form-row info">
-                <div className="row-full">
-                  <input
-                    type="text"
-                    id="username"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <label htmlFor="username">
-                    <p>Username</p>
-                  </label>
-                </div>
-              </div>
-
-              <div className="form-row info">
-                <div className="row-full">
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={this.state.company}
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="company">
-                    <p>
-                      Company <strong>&nbsp;(Optional)</strong>
-                    </p>
-                  </label>
-                </div>
-              </div>
-
-              <div className="form-row info">
-                <div className="row-full">
-                  <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="email">
-                    <p>
-                      Email Address <strong>&nbsp;(Optional)</strong>
-                    </p>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div className="form-section">
-              <h5>Permissions</h5>
-              <div className="form-row info permissions">
-                <div className="row-full">
-                  <label htmlFor="customerPermissions">
-                    <p>Customer</p>
-                    <input
-                      type="radio"
-                      name="permissions"
-                      id="customerPermissions"
-                      value="CUSTOMER"
-                      checked={
-                        this.state.permissions === 'CUSTOMER' && 'checked'
-                      }
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </label>
-                  <label htmlFor="employeePermissions">
-                    <p>Employee</p>
-                    <input
-                      type="radio"
-                      name="permissions"
-                      id="employeePermissions"
-                      checked={
-                        this.state.permissions === 'EMPLOYEE' && 'checked'
-                      }
-                      value="EMPLOYEE"
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </label>
-                  <label htmlFor="adminPermissions">
-                    <p>Administrator</p>
-                    <input
-                      type="radio"
-                      name="permissions"
-                      id="adminPermissions"
-                      checked={this.state.permissions === 'ADMIN' && 'checked'}
-                      value="ADMIN"
-                      onChange={this.handleChange}
-                      required
-                    />
-                  </label>
-                </div>
-              </div>
-
-              <div className="form-row info">
-                <div className="row-full can-order">
-                  <label htmlFor="canOrder">
-                    <p>Is this user allowed to create their own order?</p>
-                  </label>
-                  <input
-                    id="canOrder"
-                    name="canOrder"
-                    type="checkbox"
-                    checked={this.state.canOrder === true && 'checked'}
-                    onChange={this.handleCheckbox}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* TODO: check privileges ?? */}
-
-            <div className="form-section">
-              <h5>Contact Information</h5>
-              <div className="form-row info">
-                <div className="row-full">
-                  <input
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    value={this.state.phone}
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="phone">
-                    <p>
-                      Phone Number <strong>&nbsp;(Optional)</strong>
-                    </p>
-                  </label>
-                </div>
-              </div>
-
-              <div className="form-row info">
-                <div className="row-full">
-                  <input
-                    type="text"
-                    id="address"
-                    name="address"
-                    value={this.state.address}
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="address">
-                    <p>
-                      Street Address <strong>&nbsp;(Optional)</strong>
-                    </p>
-                  </label>
-                </div>
-              </div>
-            </div>
-
-            <div className="form-section">
-              <h5>Password</h5>
-              <div className="form-row info">
-                <div className="row-half">
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <label htmlFor="password">
-                    <p>
-                      {this.props.action === 'update' ? 'New ' : ''}Password
-                    </p>
-                  </label>
-                </div>
-                <div className="row-half">
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    value={this.state.confirmPassword}
-                    onChange={this.handleChange}
-                    required
-                  />
-                  <label htmlFor="confirmPassword">
-                    <p>Confirm Password</p>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="form-footer">
-            <Btn type="submit" id="createUser" name="createUser">
-              Submit
-            </Btn>
-            <Btn
-              type="cancel"
-              id="cancelUser"
-              name="cancelUser"
-              onClick={this.handleCancel}
+      <Mutation mutation={CREATE_USER_MUTATION} variables={this.state}>
+        {(createUser, { loading, error }) => (
+          <CreateUserStyles>
+            <Form
+              id="new_user_info"
+              method="post"
+              onSubmit={async e => {
+                e.preventDefault();
+                const res = await createUser();
+                this.resetState(e);
+              }}
             >
-              Cancel
-            </Btn>
-          </div>
-        </Form>
-      </CreateUserStyles>
+              <fieldset disabled={loading} aria-busy={loading}>
+                <h4>{this.props.title}</h4>
+                <div className="form-body">
+                  <div className="form-section">
+                    <h5>User Information</h5>
+                    <div className="form-row info">
+                      <div className="row-half">
+                        <input
+                          type="text"
+                          id="firstName"
+                          name="firstName"
+                          value={this.state.firstName}
+                          onChange={this.handleChange}
+                          required
+                        />
+                        <label htmlFor="firstName">
+                          <p>First Name</p>
+                        </label>
+                      </div>
+                      <div className="row-half">
+                        <input
+                          type="text"
+                          id="lastName"
+                          name="lastName"
+                          value={this.state.lastName}
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="lastName">
+                          <p>
+                            Last Name <strong>&nbsp;(Optional)</strong>
+                          </p>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="form-row info">
+                      <div className="row-full">
+                        <input
+                          type="text"
+                          id="username"
+                          name="username"
+                          value={this.state.username}
+                          onChange={this.handleChange}
+                          required
+                        />
+                        <label htmlFor="username">
+                          <p>Username</p>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="form-row info">
+                      <div className="row-full">
+                        <input
+                          type="text"
+                          id="company"
+                          name="company"
+                          value={this.state.company}
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="company">
+                          <p>
+                            Company <strong>&nbsp;(Optional)</strong>
+                          </p>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="form-row info">
+                      <div className="row-full">
+                        <input
+                          type="text"
+                          id="email"
+                          name="email"
+                          value={this.state.email}
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="email">
+                          <p>
+                            Email Address <strong>&nbsp;(Optional)</strong>
+                          </p>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="form-section">
+                    <h5>Permissions</h5>
+                    <div className="form-row info permissions">
+                      <div className="row-full">
+                        <label htmlFor="customerPermissions">
+                          <p>Customer</p>
+                          <input
+                            type="radio"
+                            name="permissions"
+                            id="customerPermissions"
+                            value="CUSTOMER"
+                            checked={
+                              this.state.permissions === 'CUSTOMER' && 'checked'
+                            }
+                            onChange={this.handleChange}
+                            required
+                          />
+                        </label>
+                        <label htmlFor="employeePermissions">
+                          <p>Employee</p>
+                          <input
+                            type="radio"
+                            name="permissions"
+                            id="employeePermissions"
+                            checked={
+                              this.state.permissions === 'EMPLOYEE' && 'checked'
+                            }
+                            value="EMPLOYEE"
+                            onChange={this.handleChange}
+                            required
+                          />
+                        </label>
+                        <label htmlFor="adminPermissions">
+                          <p>Administrator</p>
+                          <input
+                            type="radio"
+                            name="permissions"
+                            id="adminPermissions"
+                            checked={
+                              this.state.permissions === 'ADMIN' && 'checked'
+                            }
+                            value="ADMIN"
+                            onChange={this.handleChange}
+                            required
+                          />
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="form-row info">
+                      <div className="row-full can-order">
+                        <label htmlFor="canOrder">
+                          <p>Is this user allowed to create their own order?</p>
+                        </label>
+                        <input
+                          id="canOrder"
+                          name="canOrder"
+                          type="checkbox"
+                          checked={this.state.canOrder === true && 'checked'}
+                          onChange={this.handleCheckbox}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* TODO: check privileges ?? */}
+
+                  <div className="form-section">
+                    <h5>Contact Information</h5>
+                    <div className="form-row info">
+                      <div className="row-full">
+                        <input
+                          type="text"
+                          id="phone"
+                          name="phone"
+                          value={this.state.phone}
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="phone">
+                          <p>
+                            Phone Number <strong>&nbsp;(Optional)</strong>
+                          </p>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div className="form-row info">
+                      <div className="row-full">
+                        <input
+                          type="text"
+                          id="address"
+                          name="address"
+                          value={this.state.address}
+                          onChange={this.handleChange}
+                        />
+                        <label htmlFor="address">
+                          <p>
+                            Street Address <strong>&nbsp;(Optional)</strong>
+                          </p>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="form-section">
+                    <h5>Password</h5>
+                    <div className="form-row info">
+                      <div className="row-half">
+                        <input
+                          type="password"
+                          id="password"
+                          name="password"
+                          value={this.state.password}
+                          onChange={this.handleChange}
+                          required
+                        />
+                        <label htmlFor="password">
+                          <p>
+                            {this.props.action === 'update' ? 'New ' : ''}
+                            Password
+                          </p>
+                        </label>
+                      </div>
+                      <div className="row-half">
+                        <input
+                          type="password"
+                          id="confirmPassword"
+                          name="confirmPassword"
+                          value={this.state.confirmPassword}
+                          onChange={this.handleChange}
+                          required
+                        />
+                        <label htmlFor="confirmPassword">
+                          <p>Confirm Password</p>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-footer">
+                  <Btn type="submit" id="createUser" name="createUser">
+                    Submit
+                  </Btn>
+                  <Btn
+                    type="cancel"
+                    id="cancelUser"
+                    name="cancelUser"
+                    onClick={this.handleCancel}
+                  >
+                    Cancel
+                  </Btn>
+                </div>
+              </fieldset>
+            </Form>
+          </CreateUserStyles>
+        )}
+      </Mutation>
     );
   }
 }

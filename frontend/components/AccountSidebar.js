@@ -10,16 +10,14 @@ const AccountSidebar = ({ active }) => (
     <Link href="/account/sales">
       <a className={active === 'sales' ? 'active' : ''}>Sales</a>
     </Link>
-    <Link href="/account/add-new-item">
-      <a className={active === 'add-new-item' ? 'active' : ''}>
-        Add New Product
-      </a>
+    <Link href="/account/add-item">
+      <a className={active === 'add-item' ? 'active' : ''}>Add Item</a>
     </Link>
-    <Link href="/account/add-new-user">
-      <a className={active === 'add-new-user' ? 'active' : ''}>Add New User</a>
+    <Link href="/account/add-user">
+      <a className={active === 'add-user' ? 'active' : ''}>Add User</a>
     </Link>
-    <Link href="/account/user-list">
-      <a className={active === 'user-list' ? 'active' : ''}>View All Users</a>
+    <Link href="/account/users">
+      <a className={active === 'users' ? 'active' : ''}>Users</a>
     </Link>
     <Link href="/account/update-user">
       <a className={active === 'update-user' ? 'active' : ''}>

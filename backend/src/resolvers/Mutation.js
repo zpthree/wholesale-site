@@ -1,8 +1,8 @@
 const uuidv4 = require('uuid/v4');
 
 const Mutation = {
-  async createProduct(parent, { data }, { db }, info) {
-    const product = await db.mutation.createProduct(
+  async createItem(parent, { data }, { db }, info) {
+    const item = await db.mutation.createItem(
       {
         data: {
           ...data,
@@ -11,30 +11,30 @@ const Mutation = {
       info
     );
 
-    return product;
+    return item;
   },
-  async deleteProduct(parent, { id }, { db }, info) {
-    const product = await db.query.products({ where: { id } }, '{ id }');
+  async deleteItem(parent, { id }, { db }, info) {
+    const item = await db.query.item({ where: { id } }, '{ id }');
 
-    if (!product) {
-      throw new Error('Product not found.');
+    if (!item) {
+      throw new Error('Item not found.');
     }
 
     // TODO: check permissions before deleting item
     // -- throw error if not permitted to delete
 
-    return db.mutation.deleteProduct({ where: { id } }, info);
+    return db.mutation.deleteItem({ where: { id } }, info);
   },
-  async updateProduct(parent, { id, data }, { db }, info) {
-    const productExists = await db.exists.Product({ id });
+  async updateItem(parent, { id, data }, { db }, info) {
+    const itemExists = await db.exists.Item({ id });
 
-    if (!productExists) {
-      throw new Error('Product not found.');
+    if (!itemExists) {
+      throw new Error('Item not found.');
     }
 
     delete data.id;
 
-    return db.mutation.updateProduct(
+    return db.mutation.updateItem(
       {
         data,
         where: { id },

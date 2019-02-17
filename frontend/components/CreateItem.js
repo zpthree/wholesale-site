@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import { formatDate, parseDate } from 'react-day-picker/moment';
 import CreateItemStyles from './styles/CreateItemStyles';
 import Form from './styles/Form';
 import Btn from './styles/Btn';
@@ -33,7 +31,7 @@ const CREATE_ITEM_MUTATION = gql`
     $image: String
     $largeImage: String
   ) {
-    createProduct(
+    createItem(
       data: {
         barcode: $barcode
         brand: $brand
@@ -124,7 +122,7 @@ class CreateItem extends Component {
     return (
       <CreateItemStyles>
         <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
-          {(createProduct, { loading, error }) => (
+          {(createItem, { loading, error }) => (
             <Form
               className="new-wholesale-item-form"
               autoComplete="off"
@@ -132,7 +130,7 @@ class CreateItem extends Component {
                 e.preventDefault();
 
                 await this.formatNewMoney();
-                const res = await createProduct();
+                const res = await createItem();
 
                 this.resetInitialState();
                 document.querySelector('#barcode').focus();
@@ -309,8 +307,6 @@ class CreateItem extends Component {
                     </label>
                     <DayPickerInput
                       value={this.state.expDate}
-                      formatDate={formatDate}
-                      parseDate={parseDate}
                       placeholder=""
                       onDayChange={day => this.setState({ expDate: day })}
                     />
