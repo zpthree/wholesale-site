@@ -1,4 +1,5 @@
-const uuidv4 = require('uuid/v4');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const Mutation = {
   async createItem(parent, { data }, { db }, info) {
@@ -42,11 +43,20 @@ const Mutation = {
       info
     );
   },
-  async createUser(parent, { data }, { db }, info) {
+  async createUser(parent, args, { db }, info) {
+    const { data } = args;
+
+    data.email = data.email.toLowerCase();
+    const password = await bcrypt.hash(data.password, 10);
+
     const user = await db.mutation.createUser(
       {
-        ...data,
-        active: true,
+        data: {
+          ...data,
+          password,
+          permissions: data.permissions,
+          active: true,
+        },
       },
       info
     );

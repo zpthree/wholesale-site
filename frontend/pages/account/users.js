@@ -6,7 +6,7 @@ import { users } from '../../data';
 export default class UsersPage extends Component {
   render() {
     return (
-      <AccountLayout active="user-list">
+      <AccountLayout active="users">
         <Users users={users} />
       </AccountLayout>
     );

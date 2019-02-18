@@ -18,8 +18,8 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const Header = () => (
-  <HeaderStyles>
+const Header = ({ page }) => (
+  <HeaderStyles page={page}>
     <div className="header-inner">
       <Link href="/">
         <a>

@@ -1,16 +1,24 @@
+enum Permission {
+  EMPLOYEE
+  CUSTOMER
+  ADMIN
+}
+
 type User {
   id: ID! @unique
   firstName: String!
   lastName: String
   company: String
-  email: String
+  email: String @unique
   address: String
   phone: String
-  username: String!
+  username: String! @unique
   password: String!
-  permissions: String!
+  permissions: Permission!
   canOrder: Boolean!
   active: Boolean!
+  resetToken: String
+  resetTokenExpiry: Float
 }
 
 type Item {

@@ -11,6 +11,7 @@ const loading = keyframes`
 `;
 
 const Form = styled.form`
+  position: relative;
   margin: auto;
 
   input,
@@ -22,15 +23,25 @@ const Form = styled.form`
   }
 
   input:not([type='submit']),
+  input:not([type='radio']),
+  input:not([type='checkbox']),
   textarea,
   select,
   option {
     background: ${props => props.theme.white};
     margin: 0 0 10px;
     outline: none;
-    border: 2px solid #e6e6e6;
+    border: 1px solid ${props => props.theme.lightgrey};
     padding: 7.5px 5px;
     border-radius: 2px;
+  }
+
+  input[type='radio'],
+  input[type='checkbox'] {
+    margin: 0;
+    padding: 0;
+    width: 1.6rem !important;
+    height: 1.6rem !important;
   }
 
   textarea {
@@ -86,6 +97,28 @@ const Form = styled.form`
     }
   }
 
+  p.error {
+    display: block;
+    color: ${props => props.theme.red};
+    font-weight: 600;
+    margin-top: -0.5rem;
+  }
+
+  input.error,
+  .row-full.error {
+    border: 0.1rem solid ${props => props.theme.red} !important;
+    box-shadow: 0 0 0.25rem ${props => props.theme.red};
+  }
+
+  .row-full.error {
+    padding: 1rem;
+    flex-direction: column !important;
+
+    p.error {
+      margin-top: 1.5rem;
+    }
+  }
+
   .form-row {
     width: 100%;
     margin: auto;
@@ -101,6 +134,14 @@ const Form = styled.form`
     input:not([type='submit']),
     textarea {
       width: 100%;
+    }
+
+    &.permissions label {
+      margin-right: 4rem;
+    }
+
+    &.permissions input {
+      margin-left: 1.5rem;
     }
   }
 
@@ -211,30 +252,20 @@ const Form = styled.form`
 
   .form-row.info,
   .form-row.editor {
-    input:not([type='submit']) {
+    input:not([type='submit']),
+    input:not([type='radio']),
+    input:not([type='checkbox']) {
       height: 45px;
-      border-radius: 0;
-      border: none;
-      border-bottom: 2px solid #e6e6e6;
+      border-radius: 0.2rem;
+      border: 1px solid ${props => props.theme.lightgrey};
       padding: 7.5px 5px;
     }
 
     .select-menu {
-      border-bottom: 2px solid #eee;
+      border: 1px solid ${props => props.theme.lightgrey};
       margin-top: -1px;
       margin-bottom: 17.5px;
       padding: 1px 1px 0;
-
-      &.focused {
-        padding: 0;
-        border-radius: 2px 2px 0 0;
-        border: 1px solid #f2f2f2;
-        border-bottom: 2px solid ${props => props.theme.red};
-
-        & ~ label p {
-          color: ${props => props.theme.red};
-        }
-      }
 
       select {
         font-weight: 400;
@@ -249,23 +280,10 @@ const Form = styled.form`
 
     input:not([type='submit']) {
       font-weight: 400;
-      &:focus {
-        border-radius: 2px 2px 0 0;
-        border: 1px solid #eee;
-        border-bottom: 2px solid ${props => props.theme.red};
-
-        & ~ label p {
-          color: ${props => props.theme.red};
-        }
-      }
     }
 
     textarea {
       font-weight: 400;
-    }
-
-    textarea:focus {
-      border: 2px solid ${props => props.theme.red};
     }
 
     label p {
@@ -273,8 +291,7 @@ const Form = styled.form`
       align-items: flex-end;
       height: 28px;
       font-weight: 400;
-      margin-top: -10px;
-      margin-left: 5px;
+      margin-bottom: 1rem;
     }
   }
 
@@ -286,27 +303,12 @@ const Form = styled.form`
     border: 2px solid #eee !important;
     margin: 0;
     height: 45px;
-
-    &:focus {
-      border-radius: 2px 2px 0 0;
-      border: 2px solid ${props => props.theme.red} !important;
-    }
   }
 
   .form-row.whs .select-menu {
     border: 2px solid #eee !important;
     margin: 0;
     height: 45px;
-
-    &.focused {
-      padding: 0;
-      border-radius: 2px 2px 0 0;
-      border: 2px solid ${props => props.theme.red} !important;
-
-      & ~ label p {
-        color: ${props => props.theme.red};
-      }
-    }
   }
 
   .form-row.whs p {

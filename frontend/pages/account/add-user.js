@@ -6,7 +6,7 @@ class AddNewCustomerPage extends Component {
   render() {
     return (
       <AccountLayout active="add-user">
-        <CreateUser action="create" title="Add New User" initialState={{}} />
+        <CreateUser />
       </AccountLayout>
     );
   }

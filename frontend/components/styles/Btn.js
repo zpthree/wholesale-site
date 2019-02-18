@@ -15,21 +15,26 @@ const Btn = styled.button`
       case 'submit':
         return theme.green;
       case 'cancel':
-        return theme.grey;
+        return theme.darkgrey;
     }
   }};
 
-  &:hover {
+  &:enabled:hover {
     background: ${({ type, theme }) => {
       switch (type) {
         case 'submit':
           return theme.lightgreen;
         case 'cancel':
-          return theme.lightgrey;
+          return theme.grey;
         default:
           return theme.green;
       }
     }};
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 `;
 

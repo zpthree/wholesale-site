@@ -38,6 +38,7 @@ const UsersStyles = styled.div`
     font-size: 13px;
     font-style: italic;
     margin-top: 5px;
+    min-height: 30px;
   }
 
   .user-phone,

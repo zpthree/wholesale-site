@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AccountLayout from '../../components/AccountLayout';
-import CreateUser from '../../components/CreateUser';
+import UpdateUser from '../../components/UpdateUser';
 
 const user = {
   firstName: 'Peter',
@@ -20,7 +20,7 @@ export default class EditUserInfoPage extends Component {
   render() {
     return (
       <AccountLayout active="update-user">
-        <CreateUser
+        <UpdateUser
           action="update"
           title="Update User"
           initialState={{ ...user }}

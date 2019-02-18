@@ -4,7 +4,16 @@ import gql from 'graphql-tag';
 import styled from 'styled-components';
 import Form from './styles/Form';
 import Btn from './styles/Btn';
-import { CREATE_ITEM_MUTATION } from './CreateItem';
+import isEmpty from '../lib/isEmpty';
+import {
+  validateFirstName,
+  validateUsername,
+  validatePermissions,
+  validatePassword,
+  validateConfirmPassword,
+  comparePasswords,
+} from '../lib/validation';
+import Input from './Input';
 
 const CreateUserStyles = styled.div`
   h4 {
@@ -13,6 +22,10 @@ const CreateUserStyles = styled.div`
 
   h5 {
     margin-bottom: 1rem;
+  }
+
+  .permission-options {
+    display: flex;
   }
 
   .form-row.permissions .row-full {
@@ -63,17 +76,18 @@ const CREATE_USER_MUTATION = gql`
 
 class CreateUser extends Component {
   state = {
-    firstName: '',
+    firstName: '', // required
     lastName: '',
-    username: '',
+    username: '', // required
     company: '',
     email: '',
-    permissions: '',
-    canOrder: false, // needs to be false by default
+    permissions: '', // required
+    canOrder: false, // required - needs to be false by default
     phone: '',
     address: '',
-    password: '',
-    confirmPassword: '',
+    password: '', // required
+    confirmPassword: '', // required
+    error: {},
   };
 
   handleChange = e => {
@@ -87,172 +101,236 @@ class CreateUser extends Component {
     this.setState({ [name]: !this.state.canOrder });
   };
 
-  resetState = e => {
-    const { action } = this.props;
+  handleCancel = e => {
+    e.preventDefault();
+    this.resetState();
+  };
+
+  validateInput = e => {
+    const { name, value } = e.target;
+    const error = {};
+    error[name] = '';
+    this.setState({ error: { ...this.state.error, ...error } });
+
+    if (name === 'firstName' && validateFirstName(value)) {
+      error.firstName = validateFirstName(value);
+    }
+
+    if (name === 'username' && validateUsername(value)) {
+      error.username = validateUsername(value);
+    }
+
+    if (name === 'permissions' && validatePermissions(value)) {
+      error.permissions = validatePermissions(value);
+    }
+
+    if (name === 'password' && validatePassword(value)) {
+      error.password = validatePassword(value);
+    }
+
+    if (name === 'confirmPassword' && validateConfirmPassword(value)) {
+      error.confirmPassword = validateConfirmPassword(value);
+    } else if (name === 'confirmPassword' && comparePasswords(value)) {
+      error.comparePasswords = comparePasswords(value);
+    }
 
     this.setState({
-      firstName: '',
+      error: {
+        ...this.state.error,
+        ...error,
+      },
+    });
+  };
+
+  validateForm = () => {
+    const error = {};
+
+    if (validateFirstName(this.state.firstName)) {
+      error.firstName = validateFirstName(this.state.firstName);
+    }
+
+    if (validateUsername(this.state.username)) {
+      error.username = validateUsername(this.state.username);
+    }
+
+    if (validatePermissions(this.state.permissions)) {
+      error.permissions = validatePermissions(this.state.permissions);
+    }
+
+    if (validatePassword(this.state.password)) {
+      error.password = validatePassword(this.state.password);
+    }
+
+    if (validateConfirmPassword(this.state.confirmPassword)) {
+      error.confirmPassword = validateConfirmPassword(
+        this.state.confirmPassword
+      );
+    } else if (comparePasswords(this.state.confirmPassword)) {
+      error.comparePasswords = comparePasswords(
+        this.state.password,
+        this.state.confirmPassword
+      );
+    }
+
+    this.setState({ error });
+  };
+
+  resetState = () => {
+    this.setState({
+      firstName: '', // required
       lastName: '',
-      username: '',
+      username: '', // required
       company: '',
       email: '',
-      permissions: '',
-      canOrder: false, // needs to be false by default
+      permissions: '', // required
+      canOrder: false, // required - needs to be false by default
       phone: '',
       address: '',
-      password: '',
-      confirmPassword: '',
+      password: '', // required
+      confirmPassword: '', // required
+      error: {},
     });
 
     window.scrollTo(0, 0);
   };
 
   render() {
+    const errorMessage = this.state.error;
+
     return (
       <Mutation mutation={CREATE_USER_MUTATION} variables={this.state}>
         {(createUser, { loading, error }) => (
           <CreateUserStyles>
             <Form
-              id="new_user_info"
               method="post"
               onSubmit={async e => {
                 e.preventDefault();
-                const res = await createUser();
-                this.resetState(e);
+                this.validateForm();
+
+                if (!errorMessage) {
+                  const res = await createUser();
+                  this.resetState(e);
+                }
               }}
             >
               <fieldset disabled={loading} aria-busy={loading}>
-                <h4>{this.props.title}</h4>
+                <h4>Add New User</h4>
                 <div className="form-body">
                   <div className="form-section">
                     <h5>User Information</h5>
                     <div className="form-row info">
-                      <div className="row-half">
-                        <input
-                          type="text"
-                          id="firstName"
-                          name="firstName"
-                          value={this.state.firstName}
-                          onChange={this.handleChange}
-                          required
-                        />
-                        <label htmlFor="firstName">
-                          <p>First Name</p>
-                        </label>
-                      </div>
-                      <div className="row-half">
-                        <input
-                          type="text"
-                          id="lastName"
-                          name="lastName"
-                          value={this.state.lastName}
-                          onChange={this.handleChange}
-                        />
-                        <label htmlFor="lastName">
-                          <p>
-                            Last Name <strong>&nbsp;(Optional)</strong>
-                          </p>
-                        </label>
-                      </div>
+                      <Input
+                        name="firstName"
+                        label="First Name"
+                        value={this.state.firstName}
+                        onChange={this.handleChange}
+                        onBlur={this.validateInput}
+                        error={errorMessage.firstName}
+                        size="half"
+                      />
+
+                      <Input
+                        name="lastName"
+                        label="Last Name"
+                        value={this.state.lastName}
+                        onChange={this.handleChange}
+                        optional={true}
+                        size="half"
+                      />
                     </div>
 
                     <div className="form-row info">
-                      <div className="row-full">
-                        <input
-                          type="text"
-                          id="username"
-                          name="username"
-                          value={this.state.username}
-                          onChange={this.handleChange}
-                          required
-                        />
-                        <label htmlFor="username">
-                          <p>Username</p>
-                        </label>
-                      </div>
+                      <Input
+                        name="username"
+                        label="Username"
+                        value={this.state.username}
+                        onChange={this.handleChange}
+                        onBlur={this.validateInput}
+                        error={errorMessage.username}
+                        size="half"
+                      />
+
+                      <Input
+                        name="company"
+                        label="Company"
+                        value={this.state.username}
+                        onChange={this.handleChange}
+                        optional={true}
+                        size="half"
+                      />
                     </div>
 
                     <div className="form-row info">
-                      <div className="row-full">
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          value={this.state.company}
-                          onChange={this.handleChange}
-                        />
-                        <label htmlFor="company">
-                          <p>
-                            Company <strong>&nbsp;(Optional)</strong>
-                          </p>
-                        </label>
-                      </div>
-                    </div>
-
-                    <div className="form-row info">
-                      <div className="row-full">
-                        <input
-                          type="text"
-                          id="email"
-                          name="email"
-                          value={this.state.email}
-                          onChange={this.handleChange}
-                        />
-                        <label htmlFor="email">
-                          <p>
-                            Email Address <strong>&nbsp;(Optional)</strong>
-                          </p>
-                        </label>
-                      </div>
+                      <Input
+                        type="email"
+                        name="email"
+                        label="Email Address"
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                        optional={true}
+                        size="full"
+                      />
                     </div>
                   </div>
 
                   <div className="form-section">
                     <h5>Permissions</h5>
                     <div className="form-row info permissions">
-                      <div className="row-full">
-                        <label htmlFor="customerPermissions">
-                          <p>Customer</p>
-                          <input
-                            type="radio"
-                            name="permissions"
-                            id="customerPermissions"
-                            value="CUSTOMER"
-                            checked={
-                              this.state.permissions === 'CUSTOMER' && 'checked'
-                            }
-                            onChange={this.handleChange}
-                            required
-                          />
-                        </label>
-                        <label htmlFor="employeePermissions">
-                          <p>Employee</p>
-                          <input
-                            type="radio"
-                            name="permissions"
-                            id="employeePermissions"
-                            checked={
-                              this.state.permissions === 'EMPLOYEE' && 'checked'
-                            }
-                            value="EMPLOYEE"
-                            onChange={this.handleChange}
-                            required
-                          />
-                        </label>
-                        <label htmlFor="adminPermissions">
-                          <p>Administrator</p>
-                          <input
-                            type="radio"
-                            name="permissions"
-                            id="adminPermissions"
-                            checked={
-                              this.state.permissions === 'ADMIN' && 'checked'
-                            }
-                            value="ADMIN"
-                            onChange={this.handleChange}
-                            required
-                          />
-                        </label>
+                      <div
+                        className={`row-full ${
+                          errorMessage.permissions ? 'error' : ''
+                        }`}
+                      >
+                        <div className="permission-options">
+                          <label htmlFor="customerPermissions">
+                            Customer
+                            <input
+                              type="radio"
+                              name="permissions"
+                              id="customerPermissions"
+                              value="CUSTOMER"
+                              checked={
+                                this.state.permissions === 'CUSTOMER' &&
+                                'checked'
+                              }
+                              onChange={this.handleChange}
+                              onBlur={this.validateInput}
+                            />
+                          </label>
+                          <label htmlFor="employeePermissions">
+                            Employee
+                            <input
+                              type="radio"
+                              name="permissions"
+                              id="employeePermissions"
+                              checked={
+                                this.state.permissions === 'EMPLOYEE' &&
+                                'checked'
+                              }
+                              value="EMPLOYEE"
+                              onChange={this.handleChange}
+                              onBlur={this.validateInput}
+                            />
+                          </label>
+                          <label htmlFor="adminPermissions">
+                            Administrator
+                            <input
+                              type="radio"
+                              name="permissions"
+                              id="adminPermissions"
+                              checked={
+                                this.state.permissions === 'ADMIN' && 'checked'
+                              }
+                              value="ADMIN"
+                              onChange={this.handleChange}
+                              onBlur={this.validateInput}
+                            />
+                          </label>
+                        </div>
+
+                        <p className="error">
+                          {errorMessage.permissions && errorMessage.permissions}
+                        </p>
                       </div>
                     </div>
 
@@ -277,83 +355,65 @@ class CreateUser extends Component {
                   <div className="form-section">
                     <h5>Contact Information</h5>
                     <div className="form-row info">
-                      <div className="row-full">
-                        <input
-                          type="text"
-                          id="phone"
-                          name="phone"
-                          value={this.state.phone}
-                          onChange={this.handleChange}
-                        />
-                        <label htmlFor="phone">
-                          <p>
-                            Phone Number <strong>&nbsp;(Optional)</strong>
-                          </p>
-                        </label>
-                      </div>
+                      <Input
+                        name="phone"
+                        label="Phone Number"
+                        value={this.state.phone}
+                        onChange={this.handleChange}
+                        optional={true}
+                        size="full"
+                      />
                     </div>
 
                     <div className="form-row info">
-                      <div className="row-full">
-                        <input
-                          type="text"
-                          id="address"
-                          name="address"
-                          value={this.state.address}
-                          onChange={this.handleChange}
-                        />
-                        <label htmlFor="address">
-                          <p>
-                            Street Address <strong>&nbsp;(Optional)</strong>
-                          </p>
-                        </label>
-                      </div>
+                      <Input
+                        name="address"
+                        label="Street Address"
+                        value={this.state.address}
+                        onChange={this.handleChange}
+                        optional={true}
+                        size="full"
+                      />
                     </div>
                   </div>
 
                   <div className="form-section">
                     <h5>Password</h5>
                     <div className="form-row info">
-                      <div className="row-half">
-                        <input
-                          type="password"
-                          id="password"
-                          name="password"
-                          value={this.state.password}
-                          onChange={this.handleChange}
-                          required
-                        />
-                        <label htmlFor="password">
-                          <p>
-                            {this.props.action === 'update' ? 'New ' : ''}
-                            Password
-                          </p>
-                        </label>
-                      </div>
-                      <div className="row-half">
-                        <input
-                          type="password"
-                          id="confirmPassword"
-                          name="confirmPassword"
-                          value={this.state.confirmPassword}
-                          onChange={this.handleChange}
-                          required
-                        />
-                        <label htmlFor="confirmPassword">
-                          <p>Confirm Password</p>
-                        </label>
-                      </div>
+                      <Input
+                        type="password"
+                        name="password"
+                        label="Password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        onBlur={this.validateInput}
+                        error={errorMessage.password}
+                        size="half"
+                      />
+                      <Input
+                        type="password"
+                        name="confirmPassword"
+                        label="Confirm Password"
+                        value={this.state.confirmPassword}
+                        onChange={this.handleChange}
+                        onBlur={this.validateInput}
+                        error={errorMessage.confirmPassword}
+                        size="half"
+                      />
                     </div>
                   </div>
                 </div>
 
                 <div className="form-footer">
-                  <Btn type="submit" id="createUser" name="createUser">
+                  <Btn
+                    type="submit"
+                    name="createUser"
+                    disabled={!isEmpty(errorMessage)}
+                  >
                     Submit
                   </Btn>
                   <Btn
                     type="cancel"
-                    id="cancelUser"
                     name="cancelUser"
                     onClick={this.handleCancel}
                   >
