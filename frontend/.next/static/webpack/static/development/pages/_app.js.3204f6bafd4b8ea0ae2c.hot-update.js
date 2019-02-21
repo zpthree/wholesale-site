@@ -1,0 +1,33 @@
+webpackHotUpdate("static/development/pages/_app.js",{
+
+/***/ "./components/styles/HeaderStyles.js":
+/*!*******************************************!*\
+  !*** ./components/styles/HeaderStyles.js ***!
+  \*******************************************/
+/*! exports provided: HeaderStyles */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderStyles", function() { return HeaderStyles; });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+
+var HeaderStyles = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div.withConfig({
+  displayName: "HeaderStyles",
+  componentId: "sc-1oyn79r-0"
+})(["background:", ";color:", ";position:fixed;top:0;left:0;right:0;height:70px;z-index:1000;&,& > *{", ";}.header-inner{height:100%;width:100%;max-width:", ";margin:auto;display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:10px 15px;a{color:", ";}}"], function (props) {
+  return props.theme.red;
+}, function (props) {
+  return props.theme.white;
+}, function (props) {
+  return props.page === '/login' && 'display: none !important';
+}, function (props) {
+  return props.theme.maxWidth;
+}, function (props) {
+  return props.theme.white;
+});
+
+/***/ })
+
+})
+//# sourceMappingURL=_app.js.3204f6bafd4b8ea0ae2c.hot-update.js.map

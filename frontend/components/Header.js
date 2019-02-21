@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Router from 'next/router';
+import Router, { withRouter } from 'next/router';
 import NProgress from 'nprogress';
 import Nav from './Nav';
 import UserDropdown from './UserDropdown';
@@ -18,18 +18,24 @@ Router.onRouteChangeError = () => {
   NProgress.done();
 };
 
-const Header = ({ page }) => (
-  <HeaderStyles page={page}>
-    <div className="header-inner">
-      <Link href="/">
-        <a>
-          <Logo />
-        </a>
-      </Link>
-      <Nav />
-      <UserDropdown />
-    </div>
-  </HeaderStyles>
-);
+const Header = ({ router }) => {
+  if (router.pathname !== '/login') {
+    return (
+      <HeaderStyles>
+        <div className="header-inner">
+          <Link href="/">
+            <a>
+              <Logo />
+            </a>
+          </Link>
+          <Nav dept={router.query.dept} pathname={router.pathname} />
+          <UserDropdown />
+        </div>
+      </HeaderStyles>
+    );
+  }
 
-export default Header;
+  return <></>;
+};
+
+export default withRouter(Header);

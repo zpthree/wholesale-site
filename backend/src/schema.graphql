@@ -1,8 +1,14 @@
 # import * from './generated/prisma.graphql'
 
 type Query {
-  item(id: ID!): Item!
-  items(query: String): [Item!]!
+  item(where: ItemWhereUniqueInput!): Item
+  items(
+    where: ItemWhereInput
+    orderBy: ItemOrderByInput
+    skip: Int
+    first: Int
+  ): [Item]!
+  itemsConnection(where: ItemWhereInput): ItemConnection!
   department(department: String): [Item!]!
   user(id: ID!): User!
   users(query: String): [User!]!

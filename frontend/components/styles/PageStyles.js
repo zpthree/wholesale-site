@@ -8,7 +8,7 @@ export const StyledPage = styled.div`
 export const Inner = styled.div`
   max-width: ${props => props.theme.maxWidth};
   margin: auto;
-  padding: 15px;
+  padding: 1.5rem;
 `;
 
 export const theme = {
@@ -30,7 +30,7 @@ export const theme = {
 export const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
-    font-size: 10px;
+    font-size: 62.5%;
   }
 
   *, *:before, *:after {

@@ -10,9 +10,8 @@ export const HeaderStyles = styled.div`
   height: 70px;
   z-index: 1000;
 
-  /* &,
-  & > * {
-    ${props => props.page === 'LoginPage' && 'display: none !important'};
+  /* &#login-page {
+    display: none;
   } */
 
   .header-inner {

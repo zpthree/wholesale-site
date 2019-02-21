@@ -1,20 +1,25 @@
+const { forwardTo } = require('prisma-binding');
+
 const Query = {
-  async item(parent, { id }, { db }, info) {
-    const item = await db.query.item({ where: { id } }, info);
+  // async item(parent, { id }, { db }, info) {
+  //   const item = await db.query.item({ where: { id } }, info);
 
-    if (!item) {
-      throw new Error('item not found.');
-    }
+  //   if (!item) {
+  //     throw new Error('item not found.');
+  //   }
 
-    return item;
-  },
-  items(parent, { query }, { db }, info) {
-    if (!query) {
-      return db.query.items({}, info);
-    }
+  //   return item;
+  // },
+  item: forwardTo('db'),
+  items: forwardTo('db'),
+  // items(parent, { query }, { db }, info) {
+  //   if (!query) {
+  //     return db.query.items({}, info);
+  //   }
 
-    return db.query.items({ where: { title_contains: query } }, info);
-  },
+  //   return db.query.items({ where: { title_contains: query } }, info);
+  // },
+  itemsConnection: forwardTo('db'),
   department(parent, { department }, { db }, info) {
     return db.query.items({ where: { department } }, info);
   },

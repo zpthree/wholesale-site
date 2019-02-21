@@ -4,15 +4,15 @@ export const ItemStyles = styled.div`
   position: relative;
   width: 100%;
   background: #fff;
-  margin: 0 auto 10px;
-  max-width: 450px;
-  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.075);
+  margin: 0 auto 1rem;
+  padding: 0;
+  max-width: 45rem;
+  box-shadow: 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.075);
 
-  /* Element Styles */
   h2,
   h5,
   p {
-    margin: 0;
+    margin: 0 !important;
     padding: 0;
   }
 
@@ -30,21 +30,34 @@ export const ItemStyles = styled.div`
     }
   }
 
-  /* Card Content Styles */
-  .card-content {
+  .item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: calc(100% - 90px);
+    height: calc(100% - 9rem);
+  }
+
+  /* will apply to add-to-cart input as well as admin option inputs */
+  input {
+    outline: none;
+    border: 0.1rem solid #dedede;
+    height: 3.2rem;
+    width: 4rem;
+    padding: 0.5rem;
+    margin: 0;
+    border-radius: 0.3rem;
+    font-size: 1.4rem;
+    text-align: center;
   }
 
   /* Media Queries */
   @media print {
     width: calc((8.5in / 3) - 20px);
     height: calc((11in / 3) - 0.2in);
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
+
     &:not(:nth-child(3n + 0)) {
-      margin-right: 10px;
+      margin-right: 1rem;
     }
 
     p,
@@ -55,9 +68,9 @@ export const ItemStyles = styled.div`
 
   @media screen and (min-width: 768px) {
     width: calc(50% - 10px);
-    border-radius: 2px;
-    margin: 0 0 20px;
-    height: 500px;
+    border-radius: 0.2rem;
+    margin: 0 0 2rem;
+    height: 50rem;
 
     span {
       display: flex;
@@ -65,7 +78,7 @@ export const ItemStyles = styled.div`
     }
 
     &:not(:nth-child(2n + 0)) {
-      margin-right: 20px;
+      margin-right: 2rem;
     }
   }
 
@@ -81,112 +94,102 @@ export const ItemStyles = styled.div`
       margin-right: 20px;
     }
   }
-`;
 
-export const ItemImage = styled.div`
-  margin: auto 35px auto 10px;
-  width: 70px;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  height: 180px;
-
-  @media print {
-    height: 180px;
-    width: 100%;
-  }
-
-  @media screen and (min-width: 768px) {
-    height: 220px;
-    width: 100%;
-    margin: 0;
-  }
-
-  img {
-    max-width: 160px;
-    max-height: 160px;
+  .image-container {
+    margin: auto 3.5rem auto 1rem;
+    width: 7rem;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    height: 18rem;
 
     @media print {
-      max-width: 100px;
-      max-height: 100px;
+      height: 18rem;
+      width: 100%;
     }
 
     @media screen and (min-width: 768px) {
-      max-width: 180px;
-      max-height: 180px;
+      height: 22rem;
+      width: 100%;
+      margin: 0;
+    }
+
+    img {
+      max-width: 16rem;
+      max-height: 16rem;
+
+      @media print {
+        max-width: 10rem;
+        max-height: 10rem;
+      }
+
+      @media screen and (min-width: 768px) {
+        max-width: 18rem;
+        max-height: 18rem;
+      }
     }
   }
-`;
 
-export const ItemInformation = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-
-  > span {
-    margin-bottom: 10px;
-  }
-
-  .card-title {
-    color: ${props => props.theme.red};
-    font-weight: 700;
-    padding: 0;
-    margin: 0 0 5px;
-    cursor: pointer;
-    font-size: 1.8rem;
-  }
-
-  input {
-    outline: none;
-    border: 1px solid #dedede;
-    height: 32px;
-    width: 40px;
-    padding: 5px;
-    margin: 0;
-    border-radius: 3px;
-    font-size: 0.75rem;
-    text-align: center;
-  }
-
-  .bold-text,
-  .price {
-    font-weight: 700;
-  }
-
-  .price {
-    color: ${props => props.theme.green};
-  }
-
-  .price-per-unit {
-    font-size: 0.9em;
-  }
-`;
-
-export const ItemAddToCart = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: ${props => props.theme.offwhite};
-  height: 90px;
-  position: relative;
-
-  &.overlay {
-    display: none;
-  }
-
-  @media print {
-    display: none;
-  }
-
-  .add-to-cart {
+  .item-information {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 7.5px 0 0;
+    flex-direction: column;
+    padding: 2rem;
+
+    > span {
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      color: ${props => props.theme.red};
+      font-weight: 700;
+      padding: 0;
+      margin: 0 0 0.5rem;
+      cursor: pointer;
+      font-size: 1.8rem;
+    }
+
+    .bold-text,
+    .price {
+      font-weight: 700;
+    }
+
+    .price {
+      color: ${props => props.theme.green};
+    }
+
+    .price-per-unit {
+      font-size: 0.9em;
+    }
+  }
+
+  /* Add to Cart Styles */
+  .add-to-cart {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+
+    fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0;
+
+      &[disabled] {
+        opacity: 0.5;
+
+        &,
+        & input,
+        & button {
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    @media print {
+      display: none;
+    }
 
     p,
     span {
@@ -194,23 +197,39 @@ export const ItemAddToCart = styled.div`
       font-weight: 700;
     }
 
-    input {
-      outline: none;
-      border: 1px solid #dedede;
-      height: 32px;
-      width: 40px;
-      padding: 5px;
-      margin: 0;
-      border-radius: 3px;
-      font-size: 0.75rem;
-      text-align: center;
+    button {
+      margin: 0 0 0 1.5rem;
+      height: 3rem;
+      padding: 0.5rem 1.5rem;
+      font-weight: 500;
     }
 
-    button {
-      margin: 0 0 0 15px;
-      height: 30px;
-      padding: 5px 15px;
-      font-weight: 500;
+    &-inner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: ${props => props.theme.offwhite};
+      height: 9rem;
+      width: 100%;
+    }
+  }
+
+  /* Items with zero cases available */
+  /* These styles are applied to the .item class */
+  &.zero-cases {
+    background: rgba(152, 39, 43, 0.25);
+
+    .cases-num {
+      font-weight: 700;
+      color: #f00;
+    }
+
+    .add-to-cart {
+      background: rgba(152, 39, 43, 0.4);
+
+      button {
+        background: rgba(152, 39, 43, 0.25);
+      }
     }
   }
 `;

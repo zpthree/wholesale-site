@@ -13,11 +13,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/account/sales": [
+    "/account": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/items": [
+    "/account/invoices": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

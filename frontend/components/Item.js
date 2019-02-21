@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
-import {
-  ItemStyles,
-  ItemImage,
-  ItemInformation,
-  ItemAddToCart,
-} from './styles/ItemStyles';
+import { ItemStyles } from './styles/ItemStyles';
 import Btn from './styles/Btn';
 import formatMoney from '../lib/formatMoney';
 import formatDate from '../lib/formatDate';
@@ -17,34 +13,40 @@ class Item extends Component {
 
   render() {
     const {
+      id,
       brand,
       title,
       size,
       unitsPerCase,
-      UOM,
+      uom,
       expDate,
       price,
       casesAvailable,
+      image,
     } = this.props.item;
 
     const pricePerUnit = price && unitsPerCase && price / unitsPerCase;
 
     return (
-      <ItemStyles>
-        <div className="card-content">
-          <ItemImage />
-          <ItemInformation>
-            <p className="card-title">
-              {brand && brand} {title}
-            </p>
+      <ItemStyles className={casesAvailable === 0 ? 'zero-cases' : ''}>
+        <div className="item">
+          <div className="image-container">
+            <img src={image} alt={title} />
+          </div>
+          <div className="item-information">
+            <Link href={`/item?id=${id}`}>
+              <a className="card-title">
+                {brand && brand} {title}
+              </a>
+            </Link>
             <span>
-              {unitsPerCase && size && UOM && (
-                <>
+              {unitsPerCase && size && uom && (
+                <span>
                   <p className="bold-text">Size&nbsp;</p>
                   <p>
-                    {unitsPerCase}/{size} {UOM}
+                    {unitsPerCase}/{size} {uom}
                   </p>
-                </>
+                </span>
               )}
               <span>
                 &nbsp;&nbsp;
@@ -67,15 +69,19 @@ class Item extends Component {
               <p className="bold-text">Cases Available&nbsp;</p>
               <p className="cases-num">{casesAvailable ? casesAvailable : 0}</p>
             </span>
-          </ItemInformation>
+          </div>
         </div>
-        <ItemAddToCart>
-          <div className="overlay" title="Unable to order" />
-          <form className="add-to-cart" method="post" autoComplete="off">
-            <input type="number" name="cartNum" />
-            <Btn type="submit">Add to Cart</Btn>
-          </form>
-        </ItemAddToCart>
+        <form method="post" autoComplete="off" className="add-to-cart">
+          <fieldset
+            disabled={casesAvailable === 0}
+            aria-busy={casesAvailable === 0}
+          >
+            <div className="add-to-cart-inner">
+              <input type="number" name="cartNum" />
+              <Btn type="submit">Add to Cart</Btn>
+            </div>
+          </fieldset>
+        </form>
       </ItemStyles>
     );
   }

@@ -79,12 +79,33 @@ class CreateItem extends Component {
     casesPerRow: 15,
     casesPerSkid: 150,
     comments: 'This mac and cheese is the bees knees',
+    image: '',
+    largeImage: '',
   };
 
   handleChange = e => {
     const { name, type, value } = e.target;
     const val = type === 'number' ? parseFloat(value) : value;
     this.setState({ [name]: val });
+  };
+
+  uploadFile = async e => {
+    const { files } = e.target;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'wholesale');
+
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/sommersmarket/image/upload',
+      { method: 'post', body: data }
+    );
+
+    const file = await res.json();
+
+    this.setState({
+      image: file.secure_url,
+      largeImage: file.eager[0].secure_url,
+    });
   };
 
   resetInitialState = () => {
@@ -106,6 +127,8 @@ class CreateItem extends Component {
       casesPerRow: '',
       casesPerSkid: '',
       comments: '',
+      image: '',
+      largeImage: '',
     });
 
     window.scrollTo(0, 0);
@@ -125,6 +148,7 @@ class CreateItem extends Component {
           {(createItem, { loading, error }) => (
             <Form
               className="new-wholesale-item-form"
+              method="post"
               autoComplete="off"
               onSubmit={async e => {
                 e.preventDefault();
@@ -399,9 +423,24 @@ class CreateItem extends Component {
 
                 <div className="form-footer">
                   <div className="image-area">
-                    <Icon name="camera" />
-                    <img id="new-whs-img-holder" src="" />
-                    <input type="file" name="new_image" id="new-whs-img" />
+                    <div
+                      onClick={e => {
+                        e.preventDefault();
+                        document.getElementById('new-whs-img').click();
+                      }}
+                    >
+                      <Icon name="camera" />
+                    </div>
+                    <img
+                      id="new-whs-img-holder"
+                      src={this.state.image && this.state.image}
+                    />
+                    <input
+                      type="file"
+                      name="new_image"
+                      id="new-whs-img"
+                      onChange={this.uploadFile}
+                    />
                   </div>
                   <div className="form-btns">
                     <div id="submit-new-batch-container" />
