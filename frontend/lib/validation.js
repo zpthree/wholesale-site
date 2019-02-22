@@ -50,4 +50,6 @@ export const comparePasswords = (password1, password2) => {
   if (password1 !== password2) {
     return "Passwords don't match";
   }
+
+  return null;
 };

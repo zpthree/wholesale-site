@@ -51,7 +51,7 @@ const CREATE_USER_MUTATION = gql`
     $phone: String
     $username: String!
     $password: String!
-    $permissions: String!
+    $permissions: Permission!
     $canOrder: Boolean!
   ) {
     createUser(
@@ -76,17 +76,17 @@ const CREATE_USER_MUTATION = gql`
 
 class CreateUser extends Component {
   state = {
-    firstName: '', // required
-    lastName: '',
-    username: '', // required
+    firstName: 'Zach', // required
+    lastName: 'Patrick',
+    username: 'zpthree', // required
     company: '',
-    email: '',
-    permissions: '', // required
-    canOrder: false, // required - needs to be false by default
+    email: 'zach@zachpatrick.com',
+    permissions: 'ADMIN', // required
+    canOrder: true, // required - needs to be false by default
     phone: '',
     address: '',
-    password: '', // required
-    confirmPassword: '', // required
+    password: 'thundercats', // required
+    confirmPassword: 'thundercats', // required
     error: {},
   };
 
@@ -108,8 +108,8 @@ class CreateUser extends Component {
 
   validateInput = e => {
     const { name, value } = e.target;
-    const error = {};
-    error[name] = '';
+    const error = { ...this.state.error };
+    if (error[name]) delete error[name];
     this.setState({ error: { ...this.state.error, ...error } });
 
     if (name === 'firstName' && validateFirstName(value)) {
@@ -130,16 +130,14 @@ class CreateUser extends Component {
 
     if (name === 'confirmPassword' && validateConfirmPassword(value)) {
       error.confirmPassword = validateConfirmPassword(value);
-    } else if (name === 'confirmPassword' && comparePasswords(value)) {
+    } else if (
+      name === 'confirmPassword' &&
+      comparePasswords(this.state.password, value)
+    ) {
       error.comparePasswords = comparePasswords(value);
     }
 
-    this.setState({
-      error: {
-        ...this.state.error,
-        ...error,
-      },
-    });
+    this.setState({ error: { ...error } });
   };
 
   validateForm = () => {
@@ -165,7 +163,9 @@ class CreateUser extends Component {
       error.confirmPassword = validateConfirmPassword(
         this.state.confirmPassword
       );
-    } else if (comparePasswords(this.state.confirmPassword)) {
+    } else if (
+      comparePasswords(this.state.password, this.state.confirmPassword)
+    ) {
       error.comparePasswords = comparePasswords(
         this.state.password,
         this.state.confirmPassword
@@ -196,7 +196,7 @@ class CreateUser extends Component {
 
   render() {
     const errorMessage = this.state.error;
-
+    console.log(errorMessage);
     return (
       <Mutation mutation={CREATE_USER_MUTATION} variables={this.state}>
         {(createUser, { loading, error }) => (
@@ -205,9 +205,9 @@ class CreateUser extends Component {
               method="post"
               onSubmit={async e => {
                 e.preventDefault();
-                this.validateForm();
+                await this.validateForm();
 
-                if (!errorMessage) {
+                if (isEmpty(errorMessage)) {
                   const res = await createUser();
                   this.resetState(e);
                 }
@@ -253,7 +253,7 @@ class CreateUser extends Component {
                       <Input
                         name="company"
                         label="Company"
-                        value={this.state.username}
+                        value={this.state.company}
                         onChange={this.handleChange}
                         optional={true}
                         size="half"

@@ -7,7 +7,7 @@ const LogoStyles = styled.div`
 `;
 
 const Logo = () => (
-  <LogoStyles>
+  <LogoStyles id="logo">
     <svg x="0px" y="0px" height="50px" viewBox="0 0 439 355">
       <path
         fill="#512c1d"

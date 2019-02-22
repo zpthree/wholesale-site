@@ -19,7 +19,7 @@ Router.onRouteChangeError = () => {
 };
 
 const Header = ({ router }) => {
-  if (router.pathname !== '/login') {
+  if (router.pathname !== '/sign-in') {
     return (
       <HeaderStyles>
         <div className="header-inner">
@@ -30,6 +30,9 @@ const Header = ({ router }) => {
           </Link>
           <Nav dept={router.query.dept} pathname={router.pathname} />
           <UserDropdown />
+          <Link href="/sign-in">
+            <a>Sign In</a>
+          </Link>
         </div>
       </HeaderStyles>
     );

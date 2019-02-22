@@ -12,6 +12,7 @@ type Query {
   department(department: String): [Item!]!
   user(id: ID!): User!
   users(query: String): [User!]!
+  me: User
 }
 
 type Mutation {
@@ -21,4 +22,5 @@ type Mutation {
   createUser(data: UserCreateInput!): User!
   deleteUser(id: ID!): User!
   updateUser(id: ID!, data: UserUpdateInput!): User!
+  signIn(username: String!, password: String!): User!
 }

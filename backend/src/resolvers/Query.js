@@ -1,25 +1,21 @@
 const { forwardTo } = require('prisma-binding');
 
 const Query = {
-  // async item(parent, { id }, { db }, info) {
-  //   const item = await db.query.item({ where: { id } }, info);
-
-  //   if (!item) {
-  //     throw new Error('item not found.');
-  //   }
-
-  //   return item;
-  // },
   item: forwardTo('db'),
   items: forwardTo('db'),
-  // items(parent, { query }, { db }, info) {
-  //   if (!query) {
-  //     return db.query.items({}, info);
-  //   }
-
-  //   return db.query.items({ where: { title_contains: query } }, info);
-  // },
   itemsConnection: forwardTo('db'),
+  me(parent, args, ctx, info) {
+    // check if there is a current user ID
+    if (!ctx.request.userId) {
+      return null;
+    }
+    return ctx.db.query.user(
+      {
+        where: { id: ctx.request.userId },
+      },
+      info
+    );
+  },
   department(parent, { department }, { db }, info) {
     return db.query.items({ where: { department } }, info);
   },

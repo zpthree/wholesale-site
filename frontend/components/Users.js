@@ -5,7 +5,7 @@ import UsersStyles from './styles/UsersStyles';
 import Table from './styles/Table';
 import Icon from '../elements/Icon';
 import { usersPerPage } from '../config';
-import User from './User';
+import UserRow from './UserRow';
 
 const ALL_USERS_QUERY = gql`
   query ALL_USERS_QUERY {
@@ -28,8 +28,6 @@ const ALL_USERS_QUERY = gql`
 
 class Users extends Component {
   render() {
-    const { users } = this.props;
-
     return (
       <Query query={ALL_USERS_QUERY}>
         {({ loading, error, data }) => {
@@ -46,7 +44,7 @@ class Users extends Component {
                     <th className="user-can-order">Access</th>
                   </tr>
                   {data.users.map(user => (
-                    <User key={user.id} user={user} />
+                    <UserRow key={user.id} user={user} />
                   ))}
                 </tbody>
               </Table>
