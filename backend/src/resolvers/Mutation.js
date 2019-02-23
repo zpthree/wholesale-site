@@ -26,6 +26,10 @@ const Mutation = {
 
     return user;
   },
+  signOut(parent, args, ctx, info) {
+    ctx.response.clearCookie('token');
+    return { message: 'Goodbye!' };
+  },
   async createItem(parent, { data }, { db }, info) {
     const item = await db.mutation.createItem(
       {

@@ -96,6 +96,7 @@ export const GlobalStyles = createGlobalStyle`
   button,
   input[type='submit'] {
     cursor: pointer;
+    font-family: 'Nunito Sans', sans-serif;
   }
 
   input,

@@ -23,4 +23,9 @@ type Mutation {
   deleteUser(id: ID!): User!
   updateUser(id: ID!, data: UserUpdateInput!): User!
   signIn(username: String!, password: String!): User!
+  signOut: SuccessMessage!
+}
+
+type SuccessMessage {
+  message: String!
 }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import SignInStyles from './styles/SignInStyles';
 import Btn from './styles/Btn';
 import Logo from '../elements/Logo';
 import Error from './ErrorMessage';
+import { CURRENT_USER_QUERY } from './User';
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($username: String!, $password: String!) {
@@ -36,7 +38,11 @@ class SignIn extends Component {
 
   render() {
     return (
-      <Mutation mutation={SIGNIN_MUTATION} variables={this.state}>
+      <Mutation
+        mutation={SIGNIN_MUTATION}
+        variables={this.state}
+        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+      >
         {(signIn, { loading, error }) => (
           <SignInStyles>
             <form
@@ -50,6 +56,7 @@ class SignIn extends Component {
                   password: '',
                   rememberMe: false,
                 });
+                Router.push('/');
               }}
             >
               <fieldset disabled={loading} aria-busy={loading}>

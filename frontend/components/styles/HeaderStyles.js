@@ -14,6 +14,22 @@ export const HeaderStyles = styled.div`
     display: none;
   } */
 
+  #dropdownMenuBtn {
+    border: none;
+    background: transparent;
+
+    svg {
+      height: 3.5rem;
+      width: 3.5rem;
+      fill: #fff;
+    }
+  }
+
+  #dropdownMenuContainer {
+    position: relative;
+    height: 3.5rem;
+  }
+
   .header-inner {
     height: 100%;
     width: 100%;

@@ -93,10 +93,10 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/Header.js":
-/*!******************************!*\
-  !*** ./components/Header.js ***!
-  \******************************/
+/***/ "./components/DropdownMenu.js":
+/*!************************************!*\
+  !*** ./components/DropdownMenu.js ***!
+  \************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -106,14 +106,163 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "./node_modules/next/router.js");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! nprogress */ "nprogress");
-/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Nav__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Nav */ "./components/Nav.js");
-/* harmony import */ var _UserDropdown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./UserDropdown */ "./components/UserDropdown.js");
-/* harmony import */ var _styles_HeaderStyles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./styles/HeaderStyles */ "./components/styles/HeaderStyles.js");
-/* harmony import */ var _elements_Logo__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../elements/Logo */ "./elements/Logo.js");
+/* harmony import */ var _styles_DropdownMenuStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/DropdownMenuStyles */ "./components/styles/DropdownMenuStyles.js");
+/* harmony import */ var _SignOut__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./SignOut */ "./components/SignOut.js");
+var _jsxFileName = "/Users/zach/Dropbox/Sites/wholesale-site/frontend/components/DropdownMenu.js";
+
+
+
+
+
+var DropdownMenu = function DropdownMenu(_ref) {
+  var me = _ref.me;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_DropdownMenuStyles__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "dropdown-menu-header",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: this
+  }, me.firstName, " ", me.lastName && " ".concat(me.lastName))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "separator",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 14
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/account",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: this
+  }, "Account"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/account/invoices",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 20
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
+    },
+    __self: this
+  }, "Invoices"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "separator",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 24
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 25
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://sommersmarket.com",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: this
+  }, "sommersmarket.com")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "separator",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: this
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SignOut__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 29
+    },
+    __self: this
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (DropdownMenu);
+
+/***/ }),
+
+/***/ "./components/Header.js":
+/*!******************************!*\
+  !*** ./components/Header.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/possibleConstructorReturn */ "./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/getPrototypeOf */ "./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/assertThisInitialized */ "./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/inherits */ "./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js");
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! next/router */ "./node_modules/next/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! nprogress */ "nprogress");
+/* harmony import */ var nprogress__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(nprogress__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _Nav__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Nav */ "./components/Nav.js");
+/* harmony import */ var _DropdownMenu__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./DropdownMenu */ "./components/DropdownMenu.js");
+/* harmony import */ var _styles_HeaderStyles__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./styles/HeaderStyles */ "./components/styles/HeaderStyles.js");
+/* harmony import */ var _elements_Logo__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../elements/Logo */ "./elements/Logo.js");
+/* harmony import */ var _elements_Icon__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../elements/Icon */ "./elements/Icon.js");
+/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./User */ "./components/User.js");
+
+
+
+
+
+
+
 var _jsxFileName = "/Users/zach/Dropbox/Sites/wholesale-site/frontend/components/Header.js";
 
 
@@ -124,88 +273,165 @@ var _jsxFileName = "/Users/zach/Dropbox/Sites/wholesale-site/frontend/components
 
 
 
-next_router__WEBPACK_IMPORTED_MODULE_2___default.a.onRouteChangeStart = function () {
-  nprogress__WEBPACK_IMPORTED_MODULE_3___default.a.start();
+
+
+next_router__WEBPACK_IMPORTED_MODULE_9___default.a.onRouteChangeStart = function () {
+  nprogress__WEBPACK_IMPORTED_MODULE_10___default.a.start();
 };
 
-next_router__WEBPACK_IMPORTED_MODULE_2___default.a.onRouteChangeComplete = function () {
-  nprogress__WEBPACK_IMPORTED_MODULE_3___default.a.done();
+next_router__WEBPACK_IMPORTED_MODULE_9___default.a.onRouteChangeComplete = function () {
+  nprogress__WEBPACK_IMPORTED_MODULE_10___default.a.done();
 };
 
-next_router__WEBPACK_IMPORTED_MODULE_2___default.a.onRouteChangeError = function () {
-  nprogress__WEBPACK_IMPORTED_MODULE_3___default.a.done();
+next_router__WEBPACK_IMPORTED_MODULE_9___default.a.onRouteChangeError = function () {
+  nprogress__WEBPACK_IMPORTED_MODULE_10___default.a.done();
 };
 
-var Header = function Header(_ref) {
-  var router = _ref.router;
+var Header =
+/*#__PURE__*/
+function (_Component) {
+  Object(_babel_runtime_corejs2_helpers_esm_inherits__WEBPACK_IMPORTED_MODULE_5__["default"])(Header, _Component);
 
-  if (router.pathname !== '/sign-in') {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_HeaderStyles__WEBPACK_IMPORTED_MODULE_6__["HeaderStyles"], {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 24
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "header-inner",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 25
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 26
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 27
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_elements_Logo__WEBPACK_IMPORTED_MODULE_7__["default"], {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 28
-      },
-      __self: this
-    }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Nav__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      dept: router.query.dept,
-      pathname: router.pathname,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 31
-      },
-      __self: this
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_UserDropdown__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 32
-      },
-      __self: this
-    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-      href: "/sign-in",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 33
-      },
-      __self: this
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 34
-      },
-      __self: this
-    }, "Sign In"))));
+  function Header() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    Object(_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_0__["default"])(this, Header);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = Object(_babel_runtime_corejs2_helpers_esm_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__["default"])(this, (_getPrototypeOf2 = Object(_babel_runtime_corejs2_helpers_esm_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__["default"])(Header)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "state", {
+      dropdownMenuVisible: false
+    });
+
+    return _this;
   }
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
-};
+  Object(_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(Header, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Header));
+      var router = this.props.router;
+
+      if (router.pathname !== '/sign-in') {
+        return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_styles_HeaderStyles__WEBPACK_IMPORTED_MODULE_13__["HeaderStyles"], {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 33
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+          className: "header-inner",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 34
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
+          href: "/",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 35
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("a", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 36
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_elements_Logo__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 37
+          },
+          __self: this
+        }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_User__WEBPACK_IMPORTED_MODULE_16__["default"], {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 40
+          },
+          __self: this
+        }, function (_ref) {
+          var me = _ref.data.me;
+
+          if (me) {
+            return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_Nav__WEBPACK_IMPORTED_MODULE_11__["default"], {
+              dept: router.query.dept,
+              pathname: router.pathname,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 45
+              },
+              __self: this
+            }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
+              id: "dropdownMenuContainer",
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 49
+              },
+              __self: this
+            }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
+              id: "dropdownMenuBtn",
+              onClick: function onClick() {
+                _this2.setState({
+                  dropdownMenuVisible: !_this2.state.dropdownMenuVisible
+                });
+              },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 50
+              },
+              __self: this
+            }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_elements_Icon__WEBPACK_IMPORTED_MODULE_15__["default"], {
+              name: "dropdownMenu",
+              height: "35px",
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 59
+              },
+              __self: this
+            })), _this2.state.dropdownMenuVisible && react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_DropdownMenu__WEBPACK_IMPORTED_MODULE_12__["default"], {
+              me: me,
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 62
+              },
+              __self: this
+            })));
+          }
+
+          return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
+            href: "/sign-in",
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 70
+            },
+            __self: this
+          }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("a", {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 71
+            },
+            __self: this
+          }, "Sign In"));
+        })));
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null);
+    }
+  }]);
+
+  return Header;
+}(react__WEBPACK_IMPORTED_MODULE_7__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(next_router__WEBPACK_IMPORTED_MODULE_9__["withRouter"])(Header));
 
 /***/ }),
 
@@ -299,9 +525,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _styles_NavStyles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles/NavStyles */ "./components/styles/NavStyles.js");
-/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./User */ "./components/User.js");
 var _jsxFileName = "/Users/zach/Dropbox/Sites/wholesale-site/frontend/components/Nav.js";
-
 
 
 
@@ -312,106 +536,91 @@ var Nav = function Nav(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_NavStyles__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 6
+      lineNumber: 5
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_User__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 7
-    },
-    __self: this
-  }, function (data) {
-    console.log(data);
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 10
-      },
-      __self: this
-    }, "User");
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/items",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 6
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: pathname === '/items' && !dept ? 'on' : '',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 7
     },
     __self: this
   }, "All")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/items?dept=dry-groceries",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 16
+      lineNumber: 9
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: dept && dept === 'dry-groceries' ? 'on' : '',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 10
     },
     __self: this
   }, "Dry Groceries")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/items?dept=non-food",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 14
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: dept && dept === 'non-food' ? 'on' : '',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 15
     },
     __self: this
   }, "Non-Food")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/items?dept=refrigerated",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 17
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: dept && dept === 'refrigerated' ? 'on' : '',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 18
     },
     __self: this
   }, "Refrigerated")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/items?dept=frozen",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 22
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: dept && dept === 'frozen' ? 'on' : '',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 23
     },
     __self: this
   }, "Frozen")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
     href: "/items?dept=produce",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 25
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: dept && dept === 'produce' ? 'on' : '',
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 26
     },
     __self: this
   }, "Produce")));
@@ -490,6 +699,80 @@ var Page = function Page(_ref) {
 
 /***/ }),
 
+/***/ "./components/SignOut.js":
+/*!*******************************!*\
+  !*** ./components/SignOut.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral */ "./node_modules/@babel/runtime-corejs2/helpers/esm/taggedTemplateLiteral.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-apollo */ "react-apollo");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _User__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./User */ "./components/User.js");
+
+var _jsxFileName = "/Users/zach/Dropbox/Sites/wholesale-site/frontend/components/SignOut.js";
+
+
+function _templateObject() {
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  mutation SIGN_OUT_MUTATION {\n    signOut {\n      message\n    }\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+
+
+
+var SIGN_OUT_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_3___default()(_templateObject());
+
+var SignOut = function SignOut(props) {
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Mutation"], {
+    mutation: SIGN_OUT_MUTATION,
+    refetchQueries: [{
+      query: _User__WEBPACK_IMPORTED_MODULE_4__["CURRENT_USER_QUERY"]
+    }],
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: this
+  }, function (signOut, _ref) {
+    var loading = _ref.loading,
+        error = _ref.error;
+    return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 20
+      },
+      __self: this
+    }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      onClick: function onClick() {
+        signOut();
+        location.href = '/sign-in';
+      },
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21
+      },
+      __self: this
+    }, "Sign Out"));
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SignOut);
+
+/***/ }),
+
 /***/ "./components/User.js":
 /*!****************************!*\
   !*** ./components/User.js ***!
@@ -551,59 +834,35 @@ User.propTypes = {
 
 /***/ }),
 
-/***/ "./components/UserDropdown.js":
-/*!************************************!*\
-  !*** ./components/UserDropdown.js ***!
-  \************************************/
+/***/ "./components/styles/DropdownMenuStyles.js":
+/*!*************************************************!*\
+  !*** ./components/styles/DropdownMenuStyles.js ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _elements_Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../elements/Icon */ "./elements/Icon.js");
-/* harmony import */ var _styles_UserDropdownStyles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/UserDropdownStyles */ "./components/styles/UserDropdownStyles.js");
-var _jsxFileName = "/Users/zach/Dropbox/Sites/wholesale-site/frontend/components/UserDropdown.js";
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
 
-
-
-
-
-var UserDropdown = function UserDropdown() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_UserDropdownStyles__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 6
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/account",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 7
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_elements_Icon__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    name: "userDropdown",
-    height: "35px",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 9
-    },
-    __self: this
-  }))));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (UserDropdown);
+var UserDropdownStyles = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
+  displayName: "DropdownMenuStyles__UserDropdownStyles",
+  componentId: "lkmbj9-0"
+})(["position:absolute;width:190px;height:400px;top:50px;left:-105px;.fa-caret-up{width:22px;position:absolute;top:-22px;left:148px;path{fill:", ";}}.dropdown-menu-header{padding:10px;color:", ";text-align:center;}ul{min-width:0;background:white;width:100%;flex-direction:column;padding:0 0 2px;margin:0;border-radius:3px;box-shadow:-2px 3px 10px rgba(0,0,0,0.09),2px 3px 10px rgba(0,0,0,0.09);list-style:none;}li{cursor:pointer;width:100%;margin:0;text-align:left;}li button{background:inherit;border:none;outline:none;line-height:1.35;font-size:1.6rem;}li a,li button{display:block;width:100%;height:100%;padding:5px 10px !important;text-align:left;margin:0 !important;color:", " !important;font-weight:200;}li.separator{height:1px;margin:2px 0;background:", ";}h3{margin:0;padding:5px 10px;}ul li:hover a,ul li:hover button{transition:0s !important;background:", ";color:", " !important;}"], function (props) {
+  return props.theme.white;
+}, function (props) {
+  return props.theme.red;
+}, function (props) {
+  return props.theme.black;
+}, function (props) {
+  return props.theme.offwhite;
+}, function (props) {
+  return props.theme.red;
+}, function (props) {
+  return props.theme.white;
+});
+/* harmony default export */ __webpack_exports__["default"] = (UserDropdownStyles);
 
 /***/ }),
 
@@ -623,7 +882,7 @@ __webpack_require__.r(__webpack_exports__);
 var HeaderStyles = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
   displayName: "HeaderStyles",
   componentId: "sc-1oyn79r-0"
-})(["background:", ";color:", ";position:fixed;top:0;left:0;right:0;height:70px;z-index:1000;.header-inner{height:100%;width:100%;max-width:", ";margin:auto;display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:10px 15px;a{color:", ";}}"], function (props) {
+})(["background:", ";color:", ";position:fixed;top:0;left:0;right:0;height:70px;z-index:1000;#dropdownMenuBtn{border:none;background:transparent;svg{height:3.5rem;width:3.5rem;fill:#fff;}}#dropdownMenuContainer{position:relative;height:3.5rem;}.header-inner{height:100%;width:100%;max-width:", ";margin:auto;display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:10px 15px;a{color:", ";}}"], function (props) {
   return props.theme.red;
 }, function (props) {
   return props.theme.white;
@@ -682,7 +941,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function _templateObject() {
-  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  html {\n    box-sizing: border-box;\n    font-size: 62.5%;\n  }\n\n  *, *:before, *:after {\n    box-sizing: inherit;\n  }\n\n  body {\n    display: flex;\n    flex-direction: column;\n    margin: 0;\n    padding: 0;\n    background: ", ";\n    padding-top: 70px;\n    transition: padding 0.15s ease-in-out;\n    min-height: 100vh;\n    -webkit-print-color-adjust: exact !important;\n    color-adjust: exact !important;\n    font-size: 1.6rem;\n    line-height: 2;\n    font-weight: 300;\n    font-family: 'Nunito Sans', sans-serif;\n    \n    @media print {\n      padding-top: 0;\n    }\n  }\n\n  h1, h2, h3, h4, h5, h6 {\n    font-family: 'Bitter', serif;\n    margin: 0;\n    font-family: ", ";\n    font-weight: 600;\n  }\n\n  h1 { font-size: 4rem; }\n  h2 { font-size: 3.5rem; }\n  h3 { font-size: 3rem; }\n  h4 { font-size: 2.5rem; }\n  h5 { font-size: 2rem; }\n  h6 { font-size: 1.25rem; }\n\n  li,\n  p,\n  a,\n  textarea {\n    line-height: 1.35;\n  }\n\n  p {\n    margin: 0;\n    outline: none;\n  }\n\n  p:not(:last-child) {\n    margin-bottom: 10px;\n  }\n\n  a {\n    color: inherit;\n    text-decoration: none;\n  }\n\n  button,\n  input[type='submit'] {\n    cursor: pointer;\n  }\n\n  input,\n  textarea,\n  select {\n    font-size: 1.6rem;\n  }\n\n  .text-center {\n    text-align: center;\n  }\n\n  .asterisk {\n    color: ", ";\n  }\n"]);
+  var data = Object(_babel_runtime_corejs2_helpers_esm_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_0__["default"])(["\n  html {\n    box-sizing: border-box;\n    font-size: 62.5%;\n  }\n\n  *, *:before, *:after {\n    box-sizing: inherit;\n  }\n\n  body {\n    display: flex;\n    flex-direction: column;\n    margin: 0;\n    padding: 0;\n    background: ", ";\n    padding-top: 70px;\n    transition: padding 0.15s ease-in-out;\n    min-height: 100vh;\n    -webkit-print-color-adjust: exact !important;\n    color-adjust: exact !important;\n    font-size: 1.6rem;\n    line-height: 2;\n    font-weight: 300;\n    font-family: 'Nunito Sans', sans-serif;\n    \n    @media print {\n      padding-top: 0;\n    }\n  }\n\n  h1, h2, h3, h4, h5, h6 {\n    font-family: 'Bitter', serif;\n    margin: 0;\n    font-family: ", ";\n    font-weight: 600;\n  }\n\n  h1 { font-size: 4rem; }\n  h2 { font-size: 3.5rem; }\n  h3 { font-size: 3rem; }\n  h4 { font-size: 2.5rem; }\n  h5 { font-size: 2rem; }\n  h6 { font-size: 1.25rem; }\n\n  li,\n  p,\n  a,\n  textarea {\n    line-height: 1.35;\n  }\n\n  p {\n    margin: 0;\n    outline: none;\n  }\n\n  p:not(:last-child) {\n    margin-bottom: 10px;\n  }\n\n  a {\n    color: inherit;\n    text-decoration: none;\n  }\n\n  button,\n  input[type='submit'] {\n    cursor: pointer;\n    font-family: 'Nunito Sans', sans-serif;\n  }\n\n  input,\n  textarea,\n  select {\n    font-size: 1.6rem;\n  }\n\n  .text-center {\n    text-align: center;\n  }\n\n  .asterisk {\n    color: ", ";\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -726,26 +985,6 @@ var GlobalStyles = Object(styled_components__WEBPACK_IMPORTED_MODULE_1__["create
 }, function (props) {
   return props.theme.red;
 });
-
-/***/ }),
-
-/***/ "./components/styles/UserDropdownStyles.js":
-/*!*************************************************!*\
-  !*** ./components/styles/UserDropdownStyles.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
-
-var UserDropdownStyles = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
-  displayName: "UserDropdownStyles",
-  componentId: "sc-5h4nz3-0"
-})(["display:flex;flex-direction:column;justify-content:center;svg{height:3.5rem;width:3.5rem;}"]);
-/* harmony default export */ __webpack_exports__["default"] = (UserDropdownStyles);
 
 /***/ }),
 
@@ -809,7 +1048,7 @@ function (_Component) {
     key: "render",
     value: function render() {
       switch (this.props.name) {
-        case 'userDropdown':
+        case 'dropdownMenu':
           return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("svg", {
             className: "svg-inline--fa fa-user-circle fa-w-16",
             viewBox: "0 0 512 512",
@@ -821,7 +1060,6 @@ function (_Component) {
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("path", {
-            fill: "currentColor",
             d: "M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zM144 208c0-61.856 50.144-112 112-112s112 50.144 112 112-50.144 112-112 112-112-50.144-112-112zm268.408 172.663c-80.346 100.411-232.375 100.53-312.817 0C117.003 362.973 141.218 352 168 352h18.204c44.03 21.336 95.495 21.368 139.592 0H344c26.782 0 50.997 10.973 68.408 28.663z",
             __source: {
               fileName: _jsxFileName,
@@ -836,7 +1074,7 @@ function (_Component) {
             viewBox: "0 0 512 512",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 27
+              lineNumber: 24
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("path", {
@@ -844,7 +1082,7 @@ function (_Component) {
             d: "M512 144v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V144c0-26.5 21.5-48 48-48h88l12.3-32.9c7-18.7 24.9-31.1 44.9-31.1h125.5c20 0 37.9 12.4 44.9 31.1L376 96h88c26.5 0 48 21.5 48 48zM376 288c0-66.2-53.8-120-120-120s-120 53.8-120 120 53.8 120 120 120 120-53.8 120-120zm-32 0c0 48.5-39.5 88-88 88s-88-39.5-88-88 39.5-88 88-88 88 39.5 88 88z",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 31
+              lineNumber: 28
             },
             __self: this
           }));
@@ -855,7 +1093,7 @@ function (_Component) {
             viewBox: "0 0 640 512",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 40
+              lineNumber: 37
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("path", {
@@ -863,7 +1101,7 @@ function (_Component) {
             d: "M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h274.9c-2.4-6.8-3.4-14-2.6-21.3l6.8-60.9 1.2-11.1 7.9-7.9 77.3-77.3c-24.5-27.7-60-45.5-99.9-45.5zm45.3 145.3l-6.8 61c-1.1 10.2 7.5 18.8 17.6 17.6l60.9-6.8 137.9-137.9-71.7-71.7-137.9 137.8zM633 268.9L595.1 231c-9.3-9.3-24.5-9.3-33.8 0l-37.8 37.8-4.1 4.1 71.8 71.7 41.8-41.8c9.3-9.4 9.3-24.5 0-33.9z",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 44
+              lineNumber: 41
             },
             __self: this
           }));
@@ -874,7 +1112,7 @@ function (_Component) {
             viewBox: "0 0 448 512",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 53
+              lineNumber: 50
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("path", {
@@ -882,7 +1120,7 @@ function (_Component) {
             d: "M0 84V56c0-13.3 10.7-24 24-24h112l9.4-18.7c4-8.2 12.3-13.3 21.4-13.3h114.3c9.1 0 17.4 5.1 21.5 13.3L312 32h112c13.3 0 24 10.7 24 24v28c0 6.6-5.4 12-12 12H12C5.4 96 0 90.6 0 84zm416 56v324c0 26.5-21.5 48-48 48H80c-26.5 0-48-21.5-48-48V140c0-6.6 5.4-12 12-12h360c6.6 0 12 5.4 12 12zm-272 68c0-8.8-7.2-16-16-16s-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208zm96 0c0-8.8-7.2-16-16-16s-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208zm96 0c0-8.8-7.2-16-16-16s-16 7.2-16 16v224c0 8.8 7.2 16 16 16s16-7.2 16-16V208z",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 57
+              lineNumber: 54
             },
             __self: this
           }));
@@ -893,7 +1131,7 @@ function (_Component) {
             viewBox: "0 0 512 512",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 66
+              lineNumber: 63
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("path", {
@@ -901,7 +1139,7 @@ function (_Component) {
             d: "M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 70
+              lineNumber: 67
             },
             __self: this
           }));
@@ -912,7 +1150,7 @@ function (_Component) {
             viewBox: "0 0 512 512",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 79
+              lineNumber: 76
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("path", {
@@ -920,7 +1158,7 @@ function (_Component) {
             d: "M493.4 24.6l-104-24c-11.3-2.6-22.9 3.3-27.5 13.9l-48 112c-4.2 9.8-1.4 21.3 6.9 28l60.6 49.6c-36 76.7-98.9 140.5-177.2 177.2l-49.6-60.6c-6.8-8.3-18.2-11.1-28-6.9l-112 48C3.9 366.5-2 378.1.6 389.4l24 104C27.1 504.2 36.7 512 48 512c256.1 0 464-207.5 464-464 0-11.2-7.7-20.9-18.6-23.4z",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 83
+              lineNumber: 80
             },
             __self: this
           }));
@@ -931,7 +1169,7 @@ function (_Component) {
             viewBox: "0 0 384 512",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 92
+              lineNumber: 89
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("path", {
@@ -939,7 +1177,25 @@ function (_Component) {
             d: "M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 96
+              lineNumber: 93
+            },
+            __self: this
+          }));
+
+        case 'caretUp':
+          return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("svg", {
+            class: "svg-inline--fa fa-caret-up fa-w-10",
+            viewBox: "0 0 320 512",
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 102
+            },
+            __self: this
+          }, react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement("path", {
+            d: "M288.662 352H31.338c-17.818 0-26.741-21.543-14.142-34.142l128.662-128.662c7.81-7.81 20.474-7.81 28.284 0l128.662 128.662c12.6 12.599 3.676 34.142-14.142 34.142z",
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 103
             },
             __self: this
           }));
