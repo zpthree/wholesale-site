@@ -25,10 +25,38 @@ class Header extends Component {
   state = {
     dropdownMenuVisible: false,
   };
+
+  componentDidMount = () => {
+    document.body.addEventListener('click', this.handleClickOutsideMenu);
+  };
+
+  componentWillUnmount = () => {
+    document.body.removeEventListener('click', this.handleClickOutsideMenu);
+  };
+
+  handleClickOutsideMenu = e => {
+    const dropdownMenu = document.getElementById('dropdownMenuContainer');
+    if (!dropdownMenu) return null;
+
+    if (e.target !== dropdownMenu && !dropdownMenu.contains(e.target)) {
+      this.setState({ dropdownMenuVisible: false });
+    }
+  };
+
+  toggleDropdownMenu = () => {
+    this.setState({
+      dropdownMenuVisible: !this.state.dropdownMenuVisible,
+    });
+  };
+
   render() {
     const { router } = this.props;
 
-    if (router.pathname !== '/sign-in') {
+    if (
+      router.pathname !== '/sign-in' &&
+      router.pathname !== '/request-new-password' &&
+      router.pathname !== '/reset-password'
+    ) {
       return (
         <HeaderStyles>
           <div className="header-inner">
@@ -49,17 +77,15 @@ class Header extends Component {
                       <div id="dropdownMenuContainer">
                         <button
                           id="dropdownMenuBtn"
-                          onClick={() => {
-                            this.setState({
-                              dropdownMenuVisible: !this.state
-                                .dropdownMenuVisible,
-                            });
-                          }}
+                          onClick={this.toggleDropdownMenu}
                         >
                           <Icon name="dropdownMenu" height="35px" />
                         </button>
                         {this.state.dropdownMenuVisible && (
-                          <DropdownMenu me={me} />
+                          <DropdownMenu
+                            me={me}
+                            toggleDropdownMenu={this.toggleDropdownMenu}
+                          />
                         )}
                       </div>
                     </>

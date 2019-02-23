@@ -2,7 +2,7 @@ import Link from 'next/link';
 import DropdownMenuStyles from './styles/DropdownMenuStyles';
 import SignOut from './SignOut';
 
-const DropdownMenu = ({ me }) => (
+const DropdownMenu = ({ me, toggleDropdownMenu }) => (
   <DropdownMenuStyles>
     <ul>
       <div className="dropdown-menu-header">
@@ -13,12 +13,12 @@ const DropdownMenu = ({ me }) => (
       <li className="separator" />
       <li>
         <Link href="/account">
-          <a>Account</a>
+          <a onClick={toggleDropdownMenu}>Account</a>
         </Link>
       </li>
       <li>
         <Link href="/account/invoices">
-          <a>Invoices</a>
+          <a onClick={toggleDropdownMenu}>Invoices</a>
         </Link>
       </li>
       <li className="separator" />

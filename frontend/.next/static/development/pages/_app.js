@@ -22,7 +22,8 @@ var _jsxFileName = "/Users/zach/Dropbox/Sites/wholesale-site/frontend/components
 
 
 var DropdownMenu = function DropdownMenu(_ref) {
-  var me = _ref.me;
+  var me = _ref.me,
+      toggleDropdownMenu = _ref.toggleDropdownMenu;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_DropdownMenuStyles__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
@@ -69,6 +70,7 @@ var DropdownMenu = function DropdownMenu(_ref) {
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    onClick: toggleDropdownMenu,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 16
@@ -88,6 +90,7 @@ var DropdownMenu = function DropdownMenu(_ref) {
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    onClick: toggleDropdownMenu,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 21
@@ -216,6 +219,31 @@ function (_Component) {
       dropdownMenuVisible: false
     });
 
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "componentDidMount", function () {
+      document.body.addEventListener('click', _this.handleClickOutsideMenu);
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "componentWillUnmount", function () {
+      document.body.removeEventListener('click', _this.handleClickOutsideMenu);
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "handleClickOutsideMenu", function (e) {
+      var dropdownMenu = document.getElementById('dropdownMenuContainer');
+      if (!dropdownMenu) return null;
+
+      if (e.target !== dropdownMenu && !dropdownMenu.contains(e.target)) {
+        _this.setState({
+          dropdownMenuVisible: false
+        });
+      }
+    });
+
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__["default"])(_this), "toggleDropdownMenu", function () {
+      _this.setState({
+        dropdownMenuVisible: !_this.state.dropdownMenuVisible
+      });
+    });
+
     return _this;
   }
 
@@ -226,43 +254,43 @@ function (_Component) {
 
       var router = this.props.router;
 
-      if (router.pathname !== '/sign-in') {
+      if (router.pathname !== '/sign-in' && router.pathname !== '/request-new-password' && router.pathname !== '/reset-password') {
         return react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_styles_HeaderStyles__WEBPACK_IMPORTED_MODULE_13__["HeaderStyles"], {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 33
+            lineNumber: 61
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
           className: "header-inner",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 34
+            lineNumber: 62
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
           href: "/",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 35
+            lineNumber: 63
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("a", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 36
+            lineNumber: 64
           },
           __self: this
         }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_elements_Logo__WEBPACK_IMPORTED_MODULE_14__["default"], {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 37
+            lineNumber: 65
           },
           __self: this
         }))), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_User__WEBPACK_IMPORTED_MODULE_16__["default"], {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 40
+            lineNumber: 68
           },
           __self: this
         }, function (_ref) {
@@ -274,26 +302,22 @@ function (_Component) {
               pathname: router.pathname,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 45
+                lineNumber: 73
               },
               __self: this
             }), react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("div", {
               id: "dropdownMenuContainer",
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 49
+                lineNumber: 77
               },
               __self: this
             }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("button", {
               id: "dropdownMenuBtn",
-              onClick: function onClick() {
-                _this2.setState({
-                  dropdownMenuVisible: !_this2.state.dropdownMenuVisible
-                });
-              },
+              onClick: _this2.toggleDropdownMenu,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 50
+                lineNumber: 78
               },
               __self: this
             }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_elements_Icon__WEBPACK_IMPORTED_MODULE_15__["default"], {
@@ -301,14 +325,15 @@ function (_Component) {
               height: "35px",
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 59
+                lineNumber: 82
               },
               __self: this
             })), _this2.state.dropdownMenuVisible && react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(_DropdownMenu__WEBPACK_IMPORTED_MODULE_12__["default"], {
               me: me,
+              toggleDropdownMenu: _this2.toggleDropdownMenu,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 62
+                lineNumber: 85
               },
               __self: this
             })));
@@ -318,13 +343,13 @@ function (_Component) {
             href: "/sign-in",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 70
+              lineNumber: 96
             },
             __self: this
           }, react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("a", {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 71
+              lineNumber: 97
             },
             __self: this
           }, "Sign In"));

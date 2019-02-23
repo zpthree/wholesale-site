@@ -40,10 +40,10 @@ const SignInStyles = styled.div`
     background: #fff;
     box-shadow: 0 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
     margin: auto;
-    padding: 2rem 4rem 4rem;
+    padding: 2rem 3rem;
 
     @media screen and (min-width: 768px) {
-      padding: 0 4rem 4rem;
+      padding-top: 0;
     }
 
     fieldset {
@@ -125,7 +125,8 @@ const SignInStyles = styled.div`
     }
   }
 
-  h3 {
+  h3,
+  h4 {
     margin: 1rem 0;
     padding: 1rem 0;
     width: 100%;
@@ -137,6 +138,17 @@ const SignInStyles = styled.div`
     margin: 1rem 0 2.5rem;
     text-align: center;
     font-size: 1.8rem;
+  }
+
+  #resetPassword {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid ${props => props.theme.lightgrey};
+    text-align: center;
+
+    a:hover {
+      text-decoration: underline;
+    }
   }
 `;
 

@@ -24,8 +24,23 @@ type Mutation {
   updateUser(id: ID!, data: UserUpdateInput!): User!
   signIn(username: String!, password: String!): User!
   signOut: SuccessMessage!
+  requestReset(email: String!): SuccessMessage!
+  resetPassword(
+    resetToken: String!
+    password: String!
+    confirmPassword: String!
+  ): User!
 }
 
 type SuccessMessage {
   message: String!
+}
+
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String
+  email: String
+  username: String!
+  permissions: Permission!
 }

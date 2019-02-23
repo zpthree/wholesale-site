@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Router from 'next/router';
@@ -9,9 +10,17 @@ import Logo from '../elements/Logo';
 import Error from './ErrorMessage';
 import { CURRENT_USER_QUERY } from './User';
 
-const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION($username: String!, $password: String!) {
-    signIn(username: $username, password: $password) {
+const RESET_PASSWORD_MUTATION = gql`
+  mutation RESET_PASSWORD_MUTATION(
+    $resetToken: String!
+    $password: String!
+    $confirmPassword: String!
+  ) {
+    resetPassword(
+      resetToken: $resetToken
+      password: $password
+      confirmPassword: $confirmPassword
+    ) {
       id
       email
       username
@@ -20,11 +29,14 @@ const SIGNIN_MUTATION = gql`
   }
 `;
 
-class SignIn extends Component {
+class ResetPassword extends Component {
+  static propTypes = {
+    resetToken: PropTypes.string.isRequired,
+  };
+
   state = {
-    username: '',
     password: '',
-    rememberMe: false,
+    confirmPassword: '',
   };
 
   handleChange = e => {
@@ -32,52 +44,39 @@ class SignIn extends Component {
     this.setState({ [name]: value });
   };
 
-  handleCheckbox = e => {
-    const { name } = e.target;
-    this.setState({ [name]: !this.state.rememberMe });
-  };
-
   render() {
+    console.log(this.props);
     return (
       <Mutation
-        mutation={SIGNIN_MUTATION}
-        variables={this.state}
-        refetchQueries={[{ query: CURRENT_USER_QUERY }]}
+        mutation={RESET_PASSWORD_MUTATION}
+        variables={{
+          resetToken: this.props.resetToken,
+          password: this.state.password,
+          confirmPassword: this.state.confirmPassword,
+        }}
+        refetchQuery={[{ query: CURRENT_USER_QUERY }]}
       >
-        {(signIn, { loading, error }) => (
+        {(resetPassword, { loading, error, called }) => (
           <SignInStyles>
             <form
               className="login"
               method="post"
               onSubmit={async e => {
                 e.preventDefault();
-                await signIn();
+                await resetPassword();
                 this.setState({
-                  username: '',
                   password: '',
-                  rememberMe: false,
+                  confirmPassword: '',
                 });
                 Router.push('/');
               }}
             >
               <fieldset disabled={loading} aria-busy={loading}>
                 <Logo />
-                {/* <p>
-                    Enter your username and password below to view our wholesale
-                    selection.
-                  </p> */}
+                <h4>Reset your password</h4>
                 <Error error={error} />
                 <div className="form-row">
-                  <h5>Username</h5>
-                  <input
-                    type="text"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className="form-row">
-                  <h5>Password</h5>
+                  <h5>New Password</h5>
                   <input
                     type="password"
                     name="password"
@@ -85,25 +84,22 @@ class SignIn extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-                <div id="remember-me">
+                <div className="form-row">
+                  <h5>Confirm New Password</h5>
                   <input
-                    type="checkbox"
-                    id="remember"
-                    name="remember"
-                    checked={this.state.rememberMe === true && 'checked'}
-                    onChange={this.handleCheckbox}
+                    type="password"
+                    name="confirmPassword"
+                    value={this.state.confirmPassword}
+                    onChange={this.handleChange}
                   />
-                  <label htmlFor="log_remember">
-                    <p>Remember Me</p>
-                  </label>
                 </div>
                 <Btn type="submit" name="submit">
-                  Sign In
+                  Reset Password
                 </Btn>
                 <div id="resetPassword">
-                  <Link href="/request-new-password">
+                  <Link href="/sign-in">
                     <a>
-                      <em>Forgot Your Password?</em>
+                      <em>Already Know Your Password?</em>
                     </a>
                   </Link>
                 </div>
@@ -116,4 +112,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default ResetPassword;
