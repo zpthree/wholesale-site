@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import DropdownMenuStyles from './styles/DropdownMenuStyles';
 import SignOut from './SignOut';
+import Icon from '../elements/Icon';
 
 const DropdownMenu = ({ me, toggleDropdownMenu }) => (
   <DropdownMenuStyles>
@@ -23,7 +24,9 @@ const DropdownMenu = ({ me, toggleDropdownMenu }) => (
       </li>
       <li className="separator" />
       <li>
-        <a href="https://sommersmarket.com">sommersmarket.com</a>
+        <a href="https://sommersmarket.com">
+          sommersmarket.com <Icon name="externalLink" />
+        </a>
       </li>
       <li className="separator" />
       <SignOut />

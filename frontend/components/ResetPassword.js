@@ -8,7 +8,7 @@ import SignInStyles from './styles/SignInStyles';
 import Btn from './styles/Btn';
 import Logo from '../elements/Logo';
 import Error from './ErrorMessage';
-import { CURRENT_USER_QUERY } from './User';
+import { CURRENT_USER_QUERY } from './Me';
 
 const RESET_PASSWORD_MUTATION = gql`
   mutation RESET_PASSWORD_MUTATION(

@@ -46,10 +46,10 @@ class Item extends Component {
                   <p>
                     {unitsPerCase}/{size} {uom}
                   </p>
+                  &nbsp;&nbsp;
                 </span>
               )}
               <span>
-                &nbsp;&nbsp;
                 <p className="bold-text">Exp. Date&nbsp;</p>
                 {expDate ? formatDate(expDate) : 'N/A'}
               </span>

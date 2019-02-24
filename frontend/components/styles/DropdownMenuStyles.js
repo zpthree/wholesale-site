@@ -2,26 +2,20 @@ import styled from 'styled-components';
 
 const UserDropdownStyles = styled.div`
   position: absolute;
-  width: 190px;
-  height: 400px;
-  top: 50px;
-  left: -105px;
-
-  .fa-caret-up {
-    width: 22px;
-    position: absolute;
-    top: -22px;
-    left: 148px;
-
-    path {
-      fill: ${props => props.theme.white};
-    }
-  }
+  width: 20rem;
+  top: 5.5rem;
+  left: -10.5rem;
 
   .dropdown-menu-header {
-    padding: 10px;
+    padding: 0.5rem 1rem;
     color: ${props => props.theme.red};
     text-align: center;
+  }
+
+  .fa-external-link {
+    height: 1.4rem;
+    fill: ${props => props.theme.grey};
+    margin-left: 0.75rem;
   }
 
   ul {
@@ -29,7 +23,7 @@ const UserDropdownStyles = styled.div`
     background: white;
     width: 100%;
     flex-direction: column;
-    padding: 0 0 2px;
+    padding: 0 0 0.2rem;
     margin: 0;
     border-radius: 3px;
     box-shadow: -2px 3px 10px rgba(0, 0, 0, 0.09),
@@ -54,10 +48,11 @@ const UserDropdownStyles = styled.div`
 
   li a,
   li button {
-    display: block;
+    display: flex;
+    align-items: center;
     width: 100%;
     height: 100%;
-    padding: 5px 10px !important;
+    padding: 0.5rem 1rem !important;
     text-align: left;
     margin: 0 !important;
     color: ${props => props.theme.black} !important;
@@ -70,9 +65,9 @@ const UserDropdownStyles = styled.div`
     background: ${props => props.theme.offwhite};
   }
 
-  h3 {
+  h5 {
     margin: 0;
-    padding: 5px 10px;
+    padding: 0 1rem;
   }
 
   ul li:hover a,
@@ -80,6 +75,10 @@ const UserDropdownStyles = styled.div`
     transition: 0s !important;
     background: ${props => props.theme.red};
     color: ${props => props.theme.white} !important;
+  }
+
+  ul li:hover svg {
+    fill: ${props => props.theme.white};
   }
 `;
 

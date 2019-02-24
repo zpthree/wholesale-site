@@ -11,60 +11,69 @@ const Invoices = () => (
       <h4>Invoices</h4>
     </div>
     <Table>
-      <tbody className="account-page-invoices-container">
-        <tr className="header">
-          <th className="customer">Customer</th>
-          <th className="text-center">Issued Date</th>
-          <th className="text-center">Pickup/Delivery Date</th>
-          <th className="text-center">SKUs</th>
-          <th className="text-center">Amount</th>
-          <th className="text-center">Status</th>
-        </tr>
+      <div className="trow thead">
+        <th className="tcell customer">Customer</th>
+        <th className="tcell date-ordered text-center">Issued Date</th>
+        <th className="tcell date-ordered text-center">Pickup/Delivery Date</th>
+        <th className="tcell skus text-center">SKUs</th>
+        <th className="tcell total-cost text-center">Amount</th>
+        <th className="tcell status text-center">Status</th>
+      </div>
 
-        {invoices.map(invoice => {
-          const {
-            id,
-            customer,
-            dateOrdered,
-            pickupDateTime,
-            itemsOrdered,
-            totalCost,
-            status,
-          } = invoice;
-          let displayName;
+      {invoices.map(invoice => {
+        const {
+          id,
+          customer,
+          dateOrdered,
+          pickupDateTime,
+          itemsOrdered,
+          totalCost,
+          status,
+        } = invoice;
+        let displayName;
 
-          if (customer.company) {
-            displayName = customer.company;
-          } else if (customer.firstName && customer.lastName) {
-            displayName = customer.firstName + ' ' + customer.lastName;
-          } else if (customer.firstName) {
-            displayName = customer.firstName;
-          }
+        if (customer.company) {
+          displayName = customer.company;
+        } else if (customer.firstName && customer.lastName) {
+          displayName = customer.firstName + ' ' + customer.lastName;
+        } else if (customer.firstName) {
+          displayName = customer.firstName;
+        }
 
-          return (
-            <tr
-              key={invoice.id}
-              className="row"
-              onClick={() => Router.push(`/invoice?id=${id}`)}
-            >
-              <td className="customer">{displayName}</td>
-              <td className="text-center">
-                {dateFns.format(dateOrdered, 'MM-DD-YY')}
-              </td>
-              <td className="text-center">
+        return (
+          <div
+            key={invoice.id}
+            className="trow"
+            onClick={() => Router.push(`/invoice?id=${id}`)}
+          >
+            <div className="tcell customer">
+              <div>{displayName}</div>
+            </div>
+            <div className="tcell date-ordered">
+              <div>{dateFns.format(dateOrdered, 'MM-DD-YY')}</div>
+            </div>
+            <div className="tcell date-ordered">
+              <div>
                 {pickupDateTime && dateFns.format(pickupDateTime, 'MM-DD-YY')}
-              </td>
-              <td className="text-center">{itemsOrdered}</td>
-              <td className="text-center">{formatMoney(totalCost)}</td>
-              <td className="text-center status">
-                <span className={status.toLowerCase()}>
-                  {status.toLowerCase()}
-                </span>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
+              </div>
+            </div>
+            <div className="tcell skus">
+              <div>{itemsOrdered}</div>
+            </div>
+            <div className="tcell total-cost">
+              <div>{formatMoney(totalCost)}</div>
+            </div>
+            <div className="tcell status">
+              <div
+                className="invoice-status"
+                data-status={status.toLowerCase()}
+              >
+                {status.toLowerCase()}
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </Table>
   </InvoicesStyles>
 );

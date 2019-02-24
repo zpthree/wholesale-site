@@ -30,6 +30,7 @@ type Mutation {
     password: String!
     confirmPassword: String!
   ): User!
+  updatePermissions(userId: ID!, canOrder: Boolean, permissions: Boolean): User
 }
 
 type SuccessMessage {
@@ -40,7 +41,12 @@ type User {
   id: ID!
   firstName: String!
   lastName: String
+  company: String
   email: String
+  address: String
+  phone: String
   username: String!
   permissions: Permission!
+  canOrder: Boolean!
+  active: Boolean!
 }

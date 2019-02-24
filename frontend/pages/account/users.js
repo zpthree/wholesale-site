@@ -3,7 +3,7 @@ import AccountLayout from '../../components/AccountLayout';
 import Users from '../../components/Users';
 import { users } from '../../data';
 
-export default class UsersPage extends Component {
+class UsersPage extends Component {
   render() {
     return (
       <AccountLayout active="users">
@@ -12,3 +12,5 @@ export default class UsersPage extends Component {
     );
   }
 }
+
+export default UsersPage;

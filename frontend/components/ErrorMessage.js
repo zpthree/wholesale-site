@@ -7,8 +7,7 @@ const ErrorStyles = styled.div`
   padding: 1rem 1.5rem;
   background: white;
   margin: 2rem 0;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-left: 5px solid ${props => props.theme.red};
+  border-left: 7.5px solid #e30d0d;
 
   p {
     margin: 0;

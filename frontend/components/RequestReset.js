@@ -9,15 +9,14 @@ import Btn from './styles/Btn';
 import Error from './ErrorMessage';
 
 const SuccessMessage = styled.div`
-  padding: 2rem;
-  background: white;
+  padding: 1rem 1.5rem;
   margin: 2rem 0;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-left: 5px solid ${props => props.theme.green};
+  border-left: 5px solid #198c19;
 
   p {
     margin: 0;
     font-weight: 100;
+    text-align: left;
   }
 
   strong {
@@ -66,7 +65,7 @@ class SignIn extends Component {
             >
               <fieldset disabled={loading} aria-busy={loading}>
                 <Logo />
-                <h4>Request a new password</h4>
+                <h4>Request Password Reset</h4>
                 <Error error={error} />
                 {!error && !loading && called && (
                   <SuccessMessage>
@@ -88,7 +87,7 @@ class SignIn extends Component {
                 <div id="resetPassword">
                   <Link href="/sign-in">
                     <a>
-                      <em>Know Your Password?</em>
+                      <em>Already Know Your Password?</em>
                     </a>
                   </Link>
                 </div>

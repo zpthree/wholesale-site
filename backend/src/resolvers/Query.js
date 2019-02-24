@@ -1,11 +1,11 @@
 const { forwardTo } = require('prisma-binding');
+const { hasPermission } = require('../utils');
 
 const Query = {
   item: forwardTo('db'),
   items: forwardTo('db'),
   itemsConnection: forwardTo('db'),
   me(parent, args, ctx, info) {
-    // check if there is a current user ID
     if (!ctx.request.userId) {
       return null;
     }
@@ -28,7 +28,13 @@ const Query = {
 
     return user;
   },
-  async users(parent, { query }, { db }, info) {
+  async users(parent, { query }, { db, request }, info) {
+    if (!request.userId) {
+      throw new Error('You must be logged in.');
+    }
+
+    hasPermission(request.user, 'ADMIN');
+
     if (!query) {
       return db.query.users({}, info);
     }

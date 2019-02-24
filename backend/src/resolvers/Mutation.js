@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 const { transport, makeANiceEmail } = require('../mail');
+const { hasPermission } = require('../utils');
 
 const Mutation = {
   async signIn(parent, { username, password }, ctx, info) {
@@ -108,7 +109,13 @@ const Mutation = {
     // return new user
     return updatedUser;
   },
-  async createItem(parent, { data }, { db }, info) {
+  async createItem(parent, { data }, { db, request }, info) {
+    if (!request.userId) {
+      throw new Error('You must be logged in to create an item');
+    }
+
+    hasPermission(request.user, 'ADMIN');
+
     const item = await db.mutation.createItem(
       {
         data: {
@@ -152,7 +159,7 @@ const Mutation = {
   async createUser(parent, args, { db }, info) {
     const { data } = args;
 
-    // TODO: check that email and user doesn't already exist
+    // TODO: check that email and username doesn't already exist
 
     data.email = data.email.toLowerCase();
     const password = await bcrypt.hash(data.password, 10);
@@ -189,6 +196,8 @@ const Mutation = {
       throw new Error('User not found.');
     }
 
+    // TODO: verify that user has permission to update specific fields (canOrder, permissions, etc.)
+
     // TODO: validate email
     // TODO: check that email doesn't already exist
 
@@ -200,6 +209,24 @@ const Mutation = {
       {
         data,
         where: { id },
+      },
+      info
+    );
+  },
+  updatePermissions(parent, args, ctx, info) {
+    if (!ctx.request.userId) {
+      throw new Error('You must be logged in.');
+    }
+
+    hasPermission(ctx.request.user, 'ADMIN');
+
+    return ctx.db.mutation.updateUser(
+      {
+        data: {
+          canOrder: args.canOrder,
+          permissions: args.permissions,
+        },
+        where: { id: args.userId },
       },
       info
     );

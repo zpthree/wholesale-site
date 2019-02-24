@@ -3,11 +3,12 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import SignInStyles from './styles/SignInStyles';
 import Btn from './styles/Btn';
 import Logo from '../elements/Logo';
 import Error from './ErrorMessage';
-import { CURRENT_USER_QUERY } from './User';
+import { CURRENT_USER_QUERY } from './Me';
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($username: String!, $password: String!) {
@@ -25,6 +26,10 @@ class SignIn extends Component {
     username: '',
     password: '',
     rememberMe: false,
+  };
+
+  static propTypes = {
+    message: PropTypes.string,
   };
 
   handleChange = e => {
@@ -62,10 +67,9 @@ class SignIn extends Component {
             >
               <fieldset disabled={loading} aria-busy={loading}>
                 <Logo />
-                {/* <p>
-                    Enter your username and password below to view our wholesale
-                    selection.
-                  </p> */}
+                {this.props.message && (
+                  <p className="alert">{this.props.message}</p>
+                )}
                 <Error error={error} />
                 <div className="form-row">
                   <h5>Username</h5>

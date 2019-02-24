@@ -7,7 +7,7 @@ import DropdownMenu from './DropdownMenu';
 import { HeaderStyles } from './styles/HeaderStyles';
 import Logo from '../elements/Logo';
 import Icon from '../elements/Icon';
-import User from './User';
+import Me from './Me';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -65,7 +65,7 @@ class Header extends Component {
                 <Logo />
               </a>
             </Link>
-            <User>
+            <Me>
               {({ data: { me } }) => {
                 if (me) {
                   return (
@@ -98,7 +98,7 @@ class Header extends Component {
                   </Link>
                 );
               }}
-            </User>
+            </Me>
           </div>
         </HeaderStyles>
       );

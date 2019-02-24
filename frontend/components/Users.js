@@ -6,6 +6,7 @@ import Table from './styles/Table';
 import Icon from '../elements/Icon';
 import { usersPerPage } from '../config';
 import UserRow from './UserRow';
+import Error from './ErrorMessage';
 
 const ALL_USERS_QUERY = gql`
   query ALL_USERS_QUERY {
@@ -18,7 +19,6 @@ const ALL_USERS_QUERY = gql`
       address
       phone
       username
-      password
       permissions
       canOrder
       active
@@ -32,21 +32,20 @@ class Users extends Component {
       <Query query={ALL_USERS_QUERY}>
         {({ loading, error, data }) => {
           if (loading) return 'Loading...';
-          if (error) return `Error! ${error.message}`;
+          if (error) return <Error error={error} />;
 
           return (
             <UsersStyles>
               <Table>
-                <tbody>
-                  <tr className="header">
-                    <th className="user-name">Name</th>
-                    <th className="user-contact"> Information</th>
-                    <th className="user-can-order">Access</th>
-                  </tr>
-                  {data.users.map(user => (
-                    <UserRow key={user.id} user={user} />
-                  ))}
-                </tbody>
+                <div className="trow thead">
+                  <div className="tcell user-name">Name</div>
+                  <div className="tcell user-contact">Contact Information</div>
+                  <div className="tcell user-permissions">Permissions</div>
+                  <div className="tcell user-permissions">Can Order</div>
+                </div>
+                {data.users.map(user => (
+                  <UserRow key={user.id} user={user} />
+                ))}
               </Table>
             </UsersStyles>
           );

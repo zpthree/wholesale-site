@@ -17,14 +17,15 @@ const AccountLayoutStyles = styled.div`
 
   .account-content {
     width: 100%;
-    margin: 0 0 0 35rem;
-
-    @media screen and (max-height: 600px) {
-      margin: 0;
-    }
+    margin: 0;
 
     @media screen and (min-width: 990px) {
       max-width: calc(100% - 35rem);
+      margin: 0 0 0 35rem;
+    }
+
+    @media screen and (max-height: 600px) {
+      margin: 0;
     }
   }
 `;

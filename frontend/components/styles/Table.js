@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Table = styled.table`
+const Table = styled.div`
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #ddd;
@@ -12,21 +12,36 @@ const Table = styled.table`
     width: calc(11in - 40px);
   }
 
-  td,
-  th {
-    padding: 7.5px;
-  }
-
-  th {
+  .thead {
+    background: #eaeaea;
+    font-family: 'Bitter', serif;
     font-weight: 600;
-    font-family: ${props => props.theme.green};
   }
 
-  tr {
-    border-bottom: 1px solid #ddd;
+  .tcell {
+    padding: 7.5px;
+    display: flex;
+    align-items: center;
   }
 
-  th.customer {
+  .trow {
+    width: 100%;
+    display: flex;
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  .trow:not(.thead) {
+    cursor: pointer;
+
+    &:hover {
+      background: #fafafa;
+    }
+  }
+
+  /* th.customer {
     display: flex;
     align-items: center;
     text-align: left;
@@ -39,14 +54,6 @@ const Table = styled.table`
   tr.header {
     background: #eaeaea;
     font-family: 'Bitter', serif;
-  }
-
-  tr.row {
-    cursor: pointer;
-
-    &:hover {
-      background: #fafafa;
-    }
   }
 
   td.invoices-edit {
@@ -128,7 +135,7 @@ const Table = styled.table`
     .fa-ellipsis-v {
       width: 4px;
     }
-  }
+  } */
 
   .status > span {
     display: inline-block;

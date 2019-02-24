@@ -17,6 +17,10 @@ export const HeaderStyles = styled.div`
   #dropdownMenuBtn {
     border: none;
     background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
 
     svg {
       height: 3.5rem;
@@ -27,7 +31,7 @@ export const HeaderStyles = styled.div`
 
   #dropdownMenuContainer {
     position: relative;
-    height: 3.5rem;
+    height: 4.5rem;
   }
 
   .header-inner {

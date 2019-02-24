@@ -7,23 +7,6 @@ const InvoicesStyles = styled.div`
     color: ${props => props.theme.red};
   }
 
-  &-loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 400px;
-    position: absolute;
-    background: #fff;
-    top: 0;
-    right: 0;
-    bottom: 5px;
-    left: 0;
-  }
-
-  #loading-icon {
-    margin: 0;
-  }
-
   .account-header {
     display: flex;
     justify-content: space-between;
@@ -41,14 +24,6 @@ const InvoicesStyles = styled.div`
     .customer-filter {
       height: 30px;
     }
-  }
-
-  .invoice-section-loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 400px;
   }
 
   .fa-filter {
@@ -98,7 +73,67 @@ const InvoicesStyles = styled.div`
     }
   }
 
-  #show-more-invoices-container {
+  .trow {
+    padding: 0.5rem 0;
+  }
+
+  .tcell.customer {
+    flex-basis: 25%;
+    flex-grow: 3;
+  }
+
+  .tcell.date-ordered {
+    flex-basis: 25%;
+    flex-grow: 3;
+  }
+
+  .tcell.skus {
+    flex-basis: 10%;
+    flex-grow: 1;
+  }
+
+  .tcell.total-cost {
+    flex-basis: 15%;
+    flex-grow: 2;
+  }
+
+  .tcell.status {
+    flex-basis: 15%;
+    flex-grow: 2;
+  }
+
+  .tcell.date-ordered,
+  .tcell.skus,
+  .tcell.total-cost,
+  .tcell.status {
+    justify-content: center;
+  }
+
+  .invoice-status {
+    width: 100%;
+    max-width: 7.5rem;
+    border-radius: 100px;
+    font-size: 1.2rem;
+    padding: 0;
+    margin: 5px;
+    font-weight: 600;
+    color: ${props => props.theme.white};
+    text-align: center;
+  }
+
+  .invoice-status[data-status='paid'] {
+    background: ${props => props.theme.green};
+  }
+
+  .invoice-status[data-status='due'] {
+    background: ${props => props.theme.red};
+  }
+
+  .invoice-status[data-status='draft'] {
+    background: ${props => props.theme.brown};
+  }
+
+  /* #show-more-invoices-container {
     td {
       text-align: center;
     }
@@ -106,7 +141,7 @@ const InvoicesStyles = styled.div`
     button {
       margin: auto;
     }
-  }
+  } */
 
   /* #show-more-invoices {
   @include submit-btn;

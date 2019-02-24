@@ -27,6 +27,12 @@ const SignInStyles = styled.div`
     height: 10rem;
   }
 
+  .alert {
+    color: ${props => props.theme.red};
+    font-weight: 600;
+    margin: 1rem 0;
+  }
+
   @media screen and (min-width: 768px) {
     padding: 10rem 0;
   }
@@ -56,7 +62,7 @@ const SignInStyles = styled.div`
       }
 
       &::before {
-        height: 10px;
+        height: 15px;
         content: '';
         display: block;
         position: fixed;

@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const UsersStyles = styled.div`
+  /* tr.row:hover {
+    cursor: default;
+  }
+
   th.admin-controls,
   td.admin-controls {
     text-align: center;
@@ -23,11 +27,29 @@ const UsersStyles = styled.div`
     svg path {
       fill: #646464;
     }
+  } */
+
+  .tcell.user-name {
+    flex-basis: 20%;
+    flex-grow: 2;
   }
 
-  .user-name,
-  .user-contact {
+  .tcell.user-contact {
+    flex-basis: 50%;
+    flex-grow: 3;
+  }
+
+  .tcell.user-permissions {
+    flex-basis: 25%;
+    flex-grow: 2;
+  }
+
+  .tcell.user-name,
+  .tcell.user-contact {
     text-align: left;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   .user-name .name {
@@ -37,19 +59,26 @@ const UsersStyles = styled.div`
   .user-company {
     font-size: 13px;
     font-style: italic;
-    margin-top: 5px;
-    min-height: 30px;
   }
 
   .user-phone,
-  .user-can-order {
+  .user-permissions {
     text-align: center;
+  }
+
+  .tcell.user-permissions {
+    max-width: 12rem;
+    display: none;
+
+    @media screen and (min-width: 990px) {
+      display: flex;
+    }
   }
 
   .user-contact > div {
     display: flex;
     align-items: center;
-    margin: 10px 0;
+    margin: 0;
 
     .fa-envelope,
     .fa-phone,
@@ -71,29 +100,37 @@ const UsersStyles = styled.div`
     }
   }
 
-  .can-order,
+  div.can-order,
+  .tcell.user-permissions {
+    justify-content: center;
+    padding: 0;
+  }
+
+  div.can-order {
+    align-items: center;
+  }
+
   .permission-level {
-    width: 10rem;
-    padding: 3px 5px;
+    width: 100%;
+    max-width: 9rem;
     border-radius: 100px;
-    font-size: 1.4rem;
-    margin: 5px auto;
-    text-align: center;
+    font-size: 1.2rem;
+    margin: 5px;
     font-weight: 600;
+    color: ${props => props.theme.white};
+    text-align: center;
   }
 
-  .permission-level[data-permission='ADMIN'],
-  .can-order[data-can-order='true'] {
-    color: ${props => props.theme.green};
+  .permission-level[data-permission='ADMIN'] {
+    background: ${props => props.theme.green};
   }
 
-  .permission-level[data-permission='CUSTOMER'],
-  .can-order[data-can-order='false'] {
-    color: ${props => props.theme.red};
+  .permission-level[data-permission='CUSTOMER'] {
+    background: ${props => props.theme.red};
   }
 
   .permission-level[data-permission='EMPLOYEE'] {
-    color: rgba(brown, 0.8);
+    background: ${props => props.theme.brown};
   }
 
   .checked,
@@ -113,6 +150,66 @@ const UsersStyles = styled.div`
     .fa-check-square path {
       fill: #338ffc;
     }
+  }
+
+  /* The switch - the box around the slider */
+  .switch {
+    position: relative;
+    display: flex;
+    width: 46px;
+    height: 14px;
+  }
+
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: 20px;
+    width: 20px;
+    left: 0;
+    bottom: -3px;
+    background-color: ${props => props.theme.green};
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:not(:checked) + .slider:before {
+    background-color: #a9a9a9;
+  }
+
+  input:checked + .slider {
+    background-color: ${props => props.theme.lightgreen};
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px ${props => props.theme.lightgreen};
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
   }
 `;
 
