@@ -1,5 +1,5 @@
-import AccountLayout from '../../components/AccountLayout';
-import Account from '../../components/Account';
+import AccountLayout from '../../components/account/AccountLayout';
+import Account from '../../components/account/Account';
 
 const AccountPage = () => (
   <AccountLayout active="account">

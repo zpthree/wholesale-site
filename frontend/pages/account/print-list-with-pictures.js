@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AccountLayout from '../../components/AccountLayout';
-import PrintList from '../../components/PrintList';
+import AccountLayout from '../../components/account/AccountLayout';
+import PrintList from '../../components/account/PrintList';
 
 export default class PrintListPicturesPage extends Component {
   render() {

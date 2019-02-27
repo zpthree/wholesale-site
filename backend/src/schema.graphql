@@ -8,6 +8,7 @@ type Query {
     skip: Int
     first: Int
   ): [Item]!
+  cartItems(where: CartItemWhereInput): [CartItem]!
   itemsConnection(where: ItemWhereInput): ItemConnection!
   department(department: String): [Item!]!
   user(id: ID!): User!
@@ -31,6 +32,7 @@ type Mutation {
     confirmPassword: String!
   ): User!
   updatePermissions(userId: ID!, canOrder: Boolean, permissions: Boolean): User
+  addToCart(id: ID!, quantity: Int): CartItem
 }
 
 type SuccessMessage {
@@ -49,4 +51,5 @@ type User {
   permissions: Permission!
   canOrder: Boolean!
   active: Boolean!
+  cart: [CartItem!]!
 }

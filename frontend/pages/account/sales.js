@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AccountLayout from '../../components/AccountLayout';
-import Sales from '../../components/Sales';
+import AccountLayout from '../../components/account/AccountLayout';
+import Sales from '../../components/account/Sales';
 
 export default class SalesPage extends Component {
   render() {

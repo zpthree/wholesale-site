@@ -19,6 +19,7 @@ type User {
   active: Boolean!
   resetToken: String
   resetTokenExpiry: Float
+  cart: [CartItem!]!
 }
 
 type Item {
@@ -45,4 +46,11 @@ type Item {
   image: String
   largeImage: String
   status: String!
+}
+
+type CartItem {
+  id: ID! @unique
+  quantity: Int! @default(value: 1)
+  item: Item!
+  user: User!
 }

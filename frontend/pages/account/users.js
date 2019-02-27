@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AccountLayout from '../../components/AccountLayout';
-import Users from '../../components/Users';
+import AccountLayout from '../../components/account/AccountLayout';
+import Users from '../../components/account/Users';
 import { users } from '../../data';
 
 class UsersPage extends Component {

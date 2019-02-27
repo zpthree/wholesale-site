@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AccountLayout from '../../components/AccountLayout';
-import UpdateUser from '../../components/UpdateUser';
+import AccountLayout from '../../components/account/AccountLayout';
+import UpdateUser from '../../components/account/UpdateUser';
 
 const user = {
   firstName: 'Peter',

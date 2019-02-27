@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import AccountLayout from '../../components/AccountLayout';
-import CreateUser from '../../components/CreateUser';
+import AccountLayout from '../../components/account/AccountLayout';
+import CreateUser from '../../components/account/CreateUser';
 
 class AddNewCustomerPage extends Component {
   render() {

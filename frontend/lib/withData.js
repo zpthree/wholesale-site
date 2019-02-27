@@ -13,6 +13,13 @@ const createClient = ({ headers }) =>
         headers,
       });
     },
+    // local data
+    clientState: {
+      resolvers: {},
+      defaults: {
+        cartOpen: true,
+      },
+    },
   });
 
 export default withApollo(createClient);
