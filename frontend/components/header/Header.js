@@ -61,7 +61,7 @@ class Header extends Component {
         <Me>
           {({ data: { me } }) => (
             <HeaderStyles>
-              <div className="header-top-container">
+              {/* <div className="header-top-container">
                 <div className="header-top">
                   <div className="header-contact">
                     <div title="Phone Number">
@@ -79,13 +79,13 @@ class Header extends Component {
                       <Link href="/cart">
                         <a id="cart">
                           <Icon name="cart" />
-                          {me.cart.length}
+                          <span id="inCart">{me.cart.length}</span>
                         </a>
                       </Link>
                     </div>
                   )}
                 </div>
-              </div>
+              </div> */}
               <div className="header-inner">
                 <Link href="/">
                   <a>
@@ -95,18 +95,44 @@ class Header extends Component {
                 {me ? (
                   <>
                     <Nav dept={router.query.dept} pathname={router.pathname} />
-                    <div id="dropdownMenuContainer">
-                      <button
-                        id="dropdownMenuBtn"
-                        onClick={this.toggleDropdownMenu}
-                      >
-                        <Icon name="dropdownMenu" height="35px" />
-                      </button>
-                      {this.state.dropdownMenuVisible && (
-                        <DropdownMenu
-                          me={me}
-                          toggleDropdownMenu={this.toggleDropdownMenu}
-                        />
+                    <div className="header-right">
+                      {me && (
+                        <>
+                          <div id="dropdownMenuContainer">
+                            <button
+                              id="dropdownMenuBtn"
+                              onClick={this.toggleDropdownMenu}
+                            >
+                              <Icon name="user" />
+                            </button>
+                            {this.state.dropdownMenuVisible && (
+                              <DropdownMenu
+                                me={me}
+                                toggleDropdownMenu={this.toggleDropdownMenu}
+                              />
+                            )}
+                          </div>
+                          <div className="icon-bubble">
+                            <div className="shopping-cart">
+                              <Link href="/cart">
+                                <a id="cart">
+                                  <button>
+                                    <Icon name="cart" />
+                                  </button>
+                                  {/* <span id="inCart">{me.cart.length}</span> */}
+                                </a>
+                              </Link>
+                            </div>
+                          </div>
+                          <div
+                            id="notifications"
+                            className="icon-bubble new-alert"
+                          >
+                            <button>
+                              <Icon name="bell" />
+                            </button>
+                          </div>
+                        </>
                       )}
                     </div>
                   </>

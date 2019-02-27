@@ -11,6 +11,7 @@ class AddToCart extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     casesAvailable: PropTypes.number.isRequired,
+    cart: PropTypes.object.isRequired,
   };
 
   state = {
@@ -29,6 +30,9 @@ class AddToCart extends Component {
 
   render() {
     const { id, casesAvailable } = this.props;
+    const [item] = this.props.cart.filter(
+      cartItem => cartItem.item.id === this.props.id
+    );
 
     return (
       <Mutation
@@ -65,23 +69,13 @@ class AddToCart extends Component {
                   Add{loading ? `ing ${this.state.orderQuantity}` : ''} to Cart
                 </Btn>
               </div>
-              <Me>
-                {({ data: { me } }) => {
-                  const [item] = me.cart.filter(
-                    cartItem => cartItem.item.id === this.props.id
-                  );
-
-                  if (!item) return null;
-
-                  return (
-                    <Link href="/cart">
-                      <a className="in-cart-message">
-                        {item.quantity} in your cart
-                      </a>
-                    </Link>
-                  );
-                }}
-              </Me>
+              {item ? (
+                <Link href="/cart">
+                  <a className="in-cart-message">
+                    {item.quantity} in your cart
+                  </a>
+                </Link>
+              ) : null}
             </fieldset>
           </form>
         )}

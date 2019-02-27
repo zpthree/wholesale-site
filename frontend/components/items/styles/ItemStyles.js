@@ -73,6 +73,10 @@ export const ItemStyles = styled.div`
     margin: 0 0 2rem;
     height: 50rem;
 
+    &[data-can-order='false'] {
+      height: 41rem;
+    }
+
     span {
       display: flex;
       align-items: center;
@@ -99,12 +103,12 @@ export const ItemStyles = styled.div`
   .image-container {
     margin: auto 3.5rem auto 1rem;
     width: 7rem;
-    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    height: 18rem;
+    min-height: 18rem;
+    max-height: 18rem;
 
     @media print {
       height: 18rem;
@@ -112,7 +116,8 @@ export const ItemStyles = styled.div`
     }
 
     @media screen and (min-width: 768px) {
-      height: 22rem;
+      min-height: 22rem;
+      max-height: 22rem;
       width: 100%;
       margin: 0;
     }

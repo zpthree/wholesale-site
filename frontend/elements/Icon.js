@@ -7,15 +7,10 @@ class Icon extends Component {
 
   render() {
     switch (this.props.name) {
-      case 'dropdownMenu':
+      case 'user':
         return (
-          <svg
-            className="svg-inline--fa fa-user-circle fa-w-16"
-            viewBox="0 0 512 512"
-            height={this.props.height && this.props.height}
-            width={this.props.width && this.props.width}
-          >
-            <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zM144 208c0-61.856 50.144-112 112-112s112 50.144 112 112-50.144 112-112 112-112-50.144-112-112zm268.408 172.663c-80.346 100.411-232.375 100.53-312.817 0C117.003 362.973 141.218 352 168 352h18.204c44.03 21.336 95.495 21.368 139.592 0H344c26.782 0 50.997 10.973 68.408 28.663z" />
+          <svg className="svg-inline--fa fa-user fa-w-14" viewBox="0 0 448 512">
+            <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z" />
           </svg>
         );
 

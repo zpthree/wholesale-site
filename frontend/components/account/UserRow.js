@@ -4,6 +4,7 @@ import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Icon from '../../elements/Icon';
 import Me from '../auth/Me';
+import { CURRENT_USER_QUERY } from '../auth/graphql/query';
 
 const UserRow = ({ user }) => (
   <div className="trow">
@@ -75,6 +76,7 @@ class CanOrderBtn extends Component {
               id: this.props.user.id,
               canOrder: this.state.canOrder,
             }}
+            refetchQueries={[{ query: CURRENT_USER_QUERY }]}
           >
             {(updatePermissions, { loading, error }) => (
               <div className="tcell user-permissions">

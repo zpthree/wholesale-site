@@ -1,4 +1,4 @@
-export default date => {
+export default function formatDate(date) {
   const options = {
     year: '2-digit',
     month: '2-digit',
@@ -7,4 +7,4 @@ export default date => {
   const newDate = new Date(date);
 
   return newDate.toLocaleDateString('en-US', options);
-};
+}

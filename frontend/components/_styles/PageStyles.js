@@ -1,16 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-export const StyledPage = styled.div`
-  background: white;
-  color: ${props => props.theme.black};
-`;
-
-export const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: auto;
-  padding: 1.5rem;
-`;
-
 export const theme = {
   red: '#98272b',
   darkred: '#8e2428',
@@ -44,7 +33,7 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     background: ${props => props.theme.white};
-    padding-top: 110px;
+    padding-top: 7rem;
     transition: padding 0.15s ease-in-out;
     min-height: 100vh;
     -webkit-print-color-adjust: exact !important;
@@ -113,4 +102,15 @@ export const GlobalStyles = createGlobalStyle`
   .asterisk {
     color: ${props => props.theme.red};
   }
+`;
+
+export const StyledPage = styled.div`
+  background: white;
+  color: ${props => props.theme.black};
+`;
+
+export const Inner = styled.div`
+  max-width: ${props => props.theme.maxWidth};
+  margin: auto;
+  padding: 2.5rem 1.5rem;
 `;

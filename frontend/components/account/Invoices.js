@@ -2,7 +2,7 @@ import Router from 'next/router';
 import dateFns from 'date-fns';
 import InvoicesStyles from './styles/InvoicesStyles';
 import Table from '../_styles/Table';
-import formatMoney from '../../lib/formatMoney';
+import { formatMoney } from '../../lib/money';
 import { invoices } from '../../data';
 
 const Invoices = () => (
