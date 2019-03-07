@@ -116,6 +116,8 @@ const Mutation = {
 
     hasPermission(request.user, 'ADMIN');
 
+    console.log('creating...', data);
+
     const item = await db.mutation.createItem(
       {
         data: {
@@ -127,8 +129,9 @@ const Mutation = {
 
     return item;
   },
-  async deleteItem(parent, { id }, { db }, info) {
-    const item = await db.query.item({ where: { id } }, '{ id }');
+  async deleteItem(parent, args, ctx, info) {
+    const where = { id: args.id };
+    const item = await ctx.db.query.item({ where }, '{ id title }');
 
     if (!item) {
       throw new Error('Item not found.');
@@ -137,7 +140,7 @@ const Mutation = {
     // TODO: check permissions before deleting item
     // -- throw error if not permitted to delete
 
-    return db.mutation.deleteItem({ where: { id } }, info);
+    return ctx.db.mutation.deleteItem({ where }, info);
   },
   async updateItem(parent, { id, data }, { db }, info) {
     const itemExists = await db.exists.Item({ id });
@@ -250,7 +253,6 @@ const Mutation = {
     );
 
     // check if item is already in the cart and add quantity if it is
-    console.log(args.quantity);
     if (existingCartItem) {
       return ctx.db.mutation.updateCartItem(
         {
@@ -273,6 +275,113 @@ const Mutation = {
       },
       info
     );
+  },
+  async removeFromCart(parent, args, ctx, info) {
+    // find cart item
+    const cartItem = await ctx.db.query.cartItem(
+      {
+        where: {
+          id: args.id,
+        },
+      },
+      `{id, user { id }}`
+    );
+
+    if (!cartItem) throw new Error('No Cart Item found');
+    // make sure user owns cart item or is admin
+    if (
+      cartItem.userId !== ctx.request.userId &&
+      ctx.request.user.permissions !== 'ADMIN'
+    ) {
+      throw new Error("You're not allowed to do that.");
+    }
+    // delete cart item
+    return ctx.db.mutation.deleteCartItem(
+      {
+        where: {
+          id: args.id,
+        },
+      },
+      info
+    );
+  },
+  async createInvoice(parent, args, ctx, info) {
+    // query the current user and make sure they are signed in
+    const { userId } = await ctx.request;
+
+    if (!userId) {
+      throw new Error('You must be signed in to complete this order.');
+    }
+
+    const user = await ctx.db.query.user(
+      { where: { id: userId } },
+      `{
+      id
+      firstName
+      lastName
+      email
+      username
+      cart {
+        id
+        quantity
+        item {
+          department
+          barcode
+          brand
+          title
+          unitsPerCase
+          size
+          uom
+          expiry
+          image
+          largeImage
+          cases
+          price          
+        }
+      }
+    }`
+    );
+
+    // recalculate total for the price - cause hackers
+    const amount = user.cart.reduce((tally, cartItem) => {
+      return tally + cartItem.item.price * cartItem.quantity;
+    }, 0);
+
+    // create the invoice
+    const invoiceItems = user.cart.map(cartItem => {
+      const invoiceItem = {
+        cases: cartItem.quantity,
+        user: { connect: { id: userId } },
+        ...cartItem.item,
+      };
+      delete invoiceItem.id;
+
+      return invoiceItem;
+    });
+
+    // TODO: if there's already an open invoice update the open one instead of creating a new one
+
+    // clear the users cart
+    const invoice = await ctx.db.mutation.createInvoice({
+      data: {
+        total: amount,
+        items: { create: invoiceItems },
+        user: { connect: { id: userId } },
+        status: 'DRAFT',
+      },
+    });
+
+    // delete cartItems
+    const cartItemIds = user.cart.map(cartItem => cartItem.id);
+
+    await ctx.db.mutation.deleteManyCartItems({
+      where: {
+        id_in: cartItemIds,
+      },
+    });
+
+    // return the order to the client
+    return invoice;
   },
 };
 

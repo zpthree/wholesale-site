@@ -8,6 +8,13 @@ type Query {
     skip: Int
     first: Int
   ): [Item]!
+  invoice(where: InvoiceWhereUniqueInput!): Invoice
+  invoices(
+    where: InvoiceWhereInput
+    orderBy: InvoiceOrderByInput
+    skip: Int
+    first: Int
+  ): [Invoice]!
   cartItems(where: CartItemWhereInput): [CartItem]!
   itemsConnection(where: ItemWhereInput): ItemConnection!
   department(department: String): [Item!]!
@@ -33,6 +40,8 @@ type Mutation {
   ): User!
   updatePermissions(userId: ID!, canOrder: Boolean, permissions: Boolean): User
   addToCart(id: ID!, quantity: Int): CartItem
+  removeFromCart(id: ID!, userId: ID): CartItem
+  createInvoice: Invoice!
 }
 
 type SuccessMessage {

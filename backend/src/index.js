@@ -25,7 +25,7 @@ server.express.use(async (req, res, next) => {
 
   const user = await db.query.user(
     { where: { id: req.userId } },
-    `{ id, permissions, email, username, firstName, lastName }`
+    `{ id permissions email username firstName lastName }`
   );
 
   req.user = user;

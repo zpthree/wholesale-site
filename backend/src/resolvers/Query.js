@@ -5,6 +5,8 @@ const Query = {
   item: forwardTo('db'),
   items: forwardTo('db'),
   itemsConnection: forwardTo('db'),
+  invoice: forwardTo('db'),
+  invoices: forwardTo('db'),
   me(parent, args, ctx, info) {
     if (!ctx.request.userId) {
       return null;

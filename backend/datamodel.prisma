@@ -4,6 +4,18 @@ enum Permission {
   ADMIN
 }
 
+enum ItemStatus {
+  DRAFT
+  ACTIVE
+  INACTIVE
+}
+
+enum InvoiceStatus {
+  DRAFT
+  DUE
+  PAID
+}
+
 type User {
   id: ID! @unique
   firstName: String!
@@ -29,7 +41,7 @@ type Item {
   brand: String
   title: String
   location: String
-  casesAvailable: Int!
+  cases: Int!
   buyingLimit: Int
   casesPerSkid: Int
   casesPerRow: Int
@@ -41,16 +53,53 @@ type Item {
   discountQty: Int
   createdAt: DateTime!
   updatedAt: DateTime!
-  expDate: String
+  expiry: String
   comments: String
   image: String
   largeImage: String
-  status: String!
+  status: ItemStatus!
 }
 
 type CartItem {
   id: ID! @unique
   quantity: Int! @default(value: 1)
-  item: Item!
+  item: Item
   user: User!
 }
+
+type InvoiceItem {
+  id: ID! @unique
+  department: String!
+  barcode: String
+  brand: String
+  title: String!
+  unitsPerCase: Float
+  size: Float
+  uom: String
+  expiry: String
+  createdAt: DateTime!
+  image: String
+  largeImage: String
+  cases: Int!
+  price: Int!
+  user: User!
+}
+
+type Invoice {
+  id: ID! @unique
+  items: [InvoiceItem!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  total: Int!
+  user: User!
+  status: InvoiceStatus!
+  pickupDate: String
+  deliveryDate: String
+}
+
+# type Notification TODO:
+# - message
+# - link
+# - read: Boolean! @default(value: false)
+# - type - new product(s), new invoice
+# - User relationship
