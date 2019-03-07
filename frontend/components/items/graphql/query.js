@@ -8,7 +8,7 @@ const SINGLE_ITEM_QUERY = gql`
       brand
       title
       location
-      casesAvailable
+      cases
       buyingLimit
       casesPerSkid
       casesPerRow
@@ -20,7 +20,7 @@ const SINGLE_ITEM_QUERY = gql`
       discountQty
       createdAt
       updatedAt
-      expDate
+      expiry
       comments
       largeImage
     }
@@ -40,7 +40,7 @@ const ALL_ITEMS_QUERY = gql`
       barcode
       brand
       title
-      casesAvailable
+      cases
       buyingLimit
       casesPerSkid
       casesPerRow

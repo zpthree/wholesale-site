@@ -7,7 +7,7 @@ const CREATE_ITEM_MUTATION = gql`
     $brand: String
     $title: String
     $location: String
-    $casesAvailable: Int!
+    $cases: Int!
     $buyingLimit: Int
     $casesPerSkid: Int
     $casesPerRow: Int
@@ -17,10 +17,11 @@ const CREATE_ITEM_MUTATION = gql`
     $price: Int!
     $discountPrice: Int
     $discountQty: Int
-    $expDate: String
+    $expiry: String
     $comments: String
     $image: String
     $largeImage: String
+    $status: ItemStatus!
   ) {
     createItem(
       data: {
@@ -35,15 +36,15 @@ const CREATE_ITEM_MUTATION = gql`
         discountPrice: $discountPrice
         discountQty: $discountQty
         location: $location
-        casesAvailable: $casesAvailable
+        cases: $cases
         buyingLimit: $buyingLimit
         casesPerRow: $casesPerRow
         casesPerSkid: $casesPerSkid
-        expDate: $expDate
+        expiry: $expiry
         comments: $comments
         image: $image
         largeImage: $largeImage
-        status: "ACTIVE"
+        status: $status
       }
     ) {
       id

@@ -23,7 +23,7 @@ const CURRENT_USER_QUERY = gql`
           barcode
           brand
           title
-          casesAvailable
+          cases
           unitsPerCase
           size
           uom

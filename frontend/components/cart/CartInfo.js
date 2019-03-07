@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import CartInfoStyles from './styles/CartInfoStyles';
-import Btn from '../_styles/Btn';
+import SubmitOrder from './SubmitOrder';
 import { formatMoney, calcTotalPrice, calcAveragePrice } from '../../lib/money';
+import Btn from '../_styles/Btn';
 
 const CartInfo = ({ cart }) => (
   <CartInfoStyles>
@@ -26,7 +27,9 @@ const CartInfo = ({ cart }) => (
             <p>Total Cost</p>
             {formatMoney(calcTotalPrice(cart))}
           </div>
-          <Btn type="submit">Submit Order</Btn>
+          <SubmitOrder>
+            <Btn type="submit">Submit Order</Btn>
+          </SubmitOrder>
         </div>
       </div>
     </form>

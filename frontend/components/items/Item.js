@@ -6,6 +6,7 @@ import { formatMoney } from '../../lib/money';
 import formatDate from '../../lib/formatDate';
 import AddToCart from './AddToCart';
 import Me from '../auth/Me';
+import ItemOptions from './ItemOptions';
 
 class Item extends Component {
   static propTypes = {
@@ -13,78 +14,63 @@ class Item extends Component {
   };
 
   render() {
-    const {
-      id,
-      brand,
-      title,
-      size,
-      unitsPerCase,
-      uom,
-      expDate,
-      price,
-      casesAvailable,
-      image,
-    } = this.props.item;
+    const { item } = this.props;
 
-    const pricePerUnit = price && unitsPerCase && price / unitsPerCase;
+    const pricePerUnit =
+      item.price && item.unitsPerCase && item.price / item.unitsPerCase;
 
     return (
       <Me>
         {({ data: { me } }) => (
           <ItemStyles
-            className={casesAvailable === 0 ? 'zero-cases' : ''}
+            className={item.cases === 0 ? 'zero-cases' : ''}
             data-can-order={me.canOrder}
           >
+            <ItemOptions id={item.id} />
             <div className="item">
               <div className="image-container">
-                <img src={image} alt={title} />
+                <img src={item.image} alt={item.title} />
               </div>
               <div className="item-information">
-                <Link href={`/item?id=${id}`}>
+                <Link href={`/item?id=${item.id}`}>
                   <a className="card-title">
-                    {brand && brand} {title}
+                    {item.brand && item.brand} {item.title}
                   </a>
                 </Link>
                 <span>
-                  {unitsPerCase && size && uom && (
+                  {item.unitsPerCase && item.size && item.uom && (
                     <span>
                       <p className="bold-text">Size&nbsp;</p>
                       <p>
-                        {unitsPerCase}/{size} {uom}
+                        {item.unitsPerCase}/{item.size} {item.uom}
                       </p>
                       &nbsp;&nbsp;
                     </span>
                   )}
                   <span>
                     <p className="bold-text">Exp. Date&nbsp;</p>
-                    {expDate ? formatDate(expDate) : 'N/A'}
+                    {item.expiry ? formatDate(item.expiry) : 'N/A'}
                   </span>
                 </span>
 
                 <span>
                   <p className="bold-text">Price&nbsp;</p>
-                  <p className="price">{formatMoney(price)}&nbsp;</p>
-                  {unitsPerCase && price && (
+                  <p className="price">{formatMoney(item.price)}&nbsp;</p>
+                  {item.unitsPerCase && item.price && (
                     <p className="price price-per">
-                      ({formatMoney(pricePerUnit)}/unit)
+                      ({formatMoney(pricePerUnit)}/item.unit)
                     </p>
                   )}
                 </span>
 
                 <span className="cases">
                   <p className="bold-text">Cases Available&nbsp;</p>
-                  <p className="cases-num">
-                    {casesAvailable ? casesAvailable : 0}
-                  </p>
+                  <p className="cases-num">{item.cases ? item.cases : 0}</p>
                 </span>
               </div>
             </div>
             {me.canOrder && (
-              <AddToCart
-                id={id}
-                casesAvailable={casesAvailable}
-                cart={me.cart}
-              />
+              <AddToCart id={item.id} cases={item.cases} cart={me.cart} />
             )}
           </ItemStyles>
         )}

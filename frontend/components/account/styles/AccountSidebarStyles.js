@@ -6,7 +6,8 @@ const AccountSidebarStyles = styled.aside`
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  box-shadow: 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.05);
+  border: 1px solid ${props => props.theme.offwhite};
+  border-radius: 2px;
 
   @media print {
     display: none;

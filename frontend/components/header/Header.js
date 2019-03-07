@@ -61,31 +61,6 @@ class Header extends Component {
         <Me>
           {({ data: { me } }) => (
             <HeaderStyles>
-              {/* <div className="header-top-container">
-                <div className="header-top">
-                  <div className="header-contact">
-                    <div title="Phone Number">
-                      <Icon name="phone" />
-                      <span>(330) 608-9153</span>
-                    </div>
-                    <div title="Fax Number">
-                      <Icon name="fax" />
-                      <span>(330) 267-1332</span>
-                    </div>
-                  </div>
-
-                  {me && (
-                    <div className="shopping-cart">
-                      <Link href="/cart">
-                        <a id="cart">
-                          <Icon name="cart" />
-                          <span id="inCart">{me.cart.length}</span>
-                        </a>
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              </div> */}
               <div className="header-inner">
                 <Link href="/">
                   <a>

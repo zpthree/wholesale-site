@@ -3,23 +3,25 @@ import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
 import Link from 'next/link';
 import Btn from '../_styles/Btn';
-import Me from '../auth/Me';
 import { CURRENT_USER_QUERY } from '../auth/graphql/query';
 import { ADD_TO_CART_MUTATION } from './graphql/mutation';
 
 class AddToCart extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
-    casesAvailable: PropTypes.number.isRequired,
-    cart: PropTypes.object.isRequired,
+    cases: PropTypes.number.isRequired,
+    cart: PropTypes.array.isRequired,
   };
 
   state = {
     orderQuantity: '',
+    cartId: '',
   };
 
-  inCartTotal = ({ cart }) => {
-    const [item] = cart.filter(cartItem => cartItem.item.id === this.props.id);
+  inCartTotal = () => {
+    const [item] = this.props.cart.filter(
+      cartItem => cartItem.item && cartItem.item.id === this.props.id
+    );
 
     if (item) {
       return item.quantity;
@@ -29,10 +31,8 @@ class AddToCart extends Component {
   };
 
   render() {
-    const { id, casesAvailable } = this.props;
-    const [item] = this.props.cart.filter(
-      cartItem => cartItem.item.id === this.props.id
-    );
+    const { id, cases } = this.props;
+    const inCart = this.inCartTotal();
 
     return (
       <Mutation
@@ -53,7 +53,7 @@ class AddToCart extends Component {
               form.querySelector('button').blur();
             }}
           >
-            <fieldset disabled={casesAvailable === 0} aria-busy={loading}>
+            <fieldset disabled={cases === 0} aria-busy={loading}>
               <div className="add-to-cart-inner">
                 <input
                   type="number"
@@ -69,11 +69,10 @@ class AddToCart extends Component {
                   Add{loading ? `ing ${this.state.orderQuantity}` : ''} to Cart
                 </Btn>
               </div>
-              {item ? (
+
+              {inCart ? (
                 <Link href="/cart">
-                  <a className="in-cart-message">
-                    {item.quantity} in your cart
-                  </a>
+                  <a className="in-cart-message">{inCart} in your cart</a>
                 </Link>
               ) : null}
             </fieldset>

@@ -19,15 +19,16 @@ class CreateItem extends Component {
     price: 4.25,
     discountPrice: 3.5,
     discountQty: 100,
-    expDate: '',
+    expiry: '',
     location: '138B',
-    casesAvailable: 500,
+    cases: 500,
     buyingLimit: 250,
     casesPerRow: 15,
     casesPerSkid: 150,
     comments: 'This mac and cheese is the bees knees',
     image: '',
     largeImage: '',
+    status: 'DRAFT' // required
   };
 
   handleChange = e => {
@@ -67,9 +68,9 @@ class CreateItem extends Component {
       price: '',
       discountPrice: '',
       discountQty: '',
-      expDate: '',
+      expiry: '',
       location: '',
-      casesAvailable: '',
+      cases: '',
       buyingLimit: '',
       casesPerRow: '',
       casesPerSkid: '',
@@ -276,13 +277,13 @@ class CreateItem extends Component {
 
                 <div className="form-row whs info">
                   <div className="row-fourth">
-                    <label htmlFor="expDate">
+                    <label htmlFor="expiry">
                       <h6>Exp. Date</h6>
                     </label>
                     <DayPickerInput
-                      value={this.state.expDate}
+                      value={this.state.expiry}
                       placeholder=""
-                      onDayChange={day => this.setState({ expDate: day })}
+                      onDayChange={day => this.setState({ expiry: day })}
                     />
                   </div>
                   <div className="row-fourth">
@@ -299,18 +300,18 @@ class CreateItem extends Component {
                     />
                   </div>
                   <div className="row-fourth">
-                    <label htmlFor="casesAvailable">
+                    <label htmlFor="cases">
                       <h6>
                         Cases <span className="asterisk">*</span>
                       </h6>
                     </label>
                     <input
                       type="number"
-                      name="casesAvailable"
-                      id="casesAvailable"
+                      name="cases"
+                      id="cases"
                       className="whs-field required"
                       required
-                      value={this.state.casesAvailable}
+                      value={this.state.cases}
                       onChange={this.handleChange}
                     />
                   </div>
