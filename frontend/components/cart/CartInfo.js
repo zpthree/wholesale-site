@@ -27,9 +27,7 @@ const CartInfo = ({ cart }) => (
             <p>Total Cost</p>
             {formatMoney(calcTotalPrice(cart))}
           </div>
-          <SubmitOrder>
-            <Btn type="submit">Submit Order</Btn>
-          </SubmitOrder>
+          <SubmitOrder>Submit Order</SubmitOrder>
         </div>
       </div>
     </form>

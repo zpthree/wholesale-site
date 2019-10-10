@@ -20,6 +20,7 @@ const createClient = ({ headers }) =>
         cartOpen: true,
       },
     },
+    // // dataIdFromObject: o => o.id,
   });
 
 export default withApollo(createClient);

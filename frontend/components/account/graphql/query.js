@@ -42,7 +42,7 @@ const ALL_INVOICES_QUERY = gql`
 
 const SINGLE_INVOICE_QUERY = gql`
   query SINGLE_INVOICE_QUERY($id: ID!) {
-    invoice(where: {id: $id}) {
+    invoice(where: { id: $id }) {
       id
       user {
         firstName

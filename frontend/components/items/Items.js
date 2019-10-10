@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import styled from 'styled-components';
 import { itemsPerPage } from '../../config';
@@ -20,13 +21,20 @@ const ItemsStyles = styled.div`
 `;
 
 class Items extends Component {
+  static propTypes = {
+    page: PropTypes.number.isRequired,
+    dept: PropTypes.string,
+  };
+
   render() {
+    const { page, dept } = this.props;
+
     return (
       <Query
         query={ALL_ITEMS_QUERY}
         variables={{
-          skip: this.props.page * itemsPerPage - itemsPerPage,
-          dept: this.props.dept,
+          skip: page * itemsPerPage - itemsPerPage,
+          dept,
           perPage: itemsPerPage,
         }}
       >
@@ -36,13 +44,13 @@ class Items extends Component {
 
           return (
             <>
-              <Pagination page={this.props.page} dept={this.props.dept} />
+              <Pagination page={page} dept={dept} />
               <ItemsStyles>
                 {data.items.map(item => (
                   <Item key={item.id} item={item} />
                 ))}
               </ItemsStyles>
-              <Pagination page={this.props.page} dept={this.props.dept} />
+              <Pagination page={page} dept={dept} />
             </>
           );
         }}
