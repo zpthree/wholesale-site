@@ -23,7 +23,7 @@
     "graphql-cli": "^3.0.10",
     "graphql-yoga": "^1.17.0",
     "jsonwebtoken": "^8.4.0",
-    "nodemailer": "^5.1.1",
+    "nodemailer": "^6.4.16",
     "prisma": "^1.26.6",
     "prisma-binding": "^2.3.2"
   },
